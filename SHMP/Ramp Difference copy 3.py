@@ -15,14 +15,14 @@ def linear(x, a, b):
     return a * x + b
 
 # Provide the file path
-file = r'D:\MyData\CERN\R192-5\SHMP\Ramp\hc1_ramp2100.dat'
-title = "Ramp for 2100"
+file = r'D:\MyData\CERN\R192-5\SHMP\Ramp\hc1_ramp2090.dat'
+title = "Ramp for 2090"
 
 # Read the data from the file, skipping lines starting with '#'
 hall_constant = hall_constant_data(file)
 
 offset = hall_constant['Hall_Voltage(V)'].iloc[0]
-hall_constant_value = 46.46
+hall_constant_value = 46.12
 hall_constant['Hall_Voltage(V)'] = (hall_constant['Hall_Voltage(V)'] - offset) * hall_constant_value
 
 # Define a list of intervals based on 'Field(T)' values
@@ -69,12 +69,12 @@ for interval, (start, end) in enumerate(intervals):
 
 
     plt.axvline(x=x_data[first_index]*1000, color=next(colors)['color'], linestyle='--')
-    ax.annotate(
-        f'Start of Deviation: ({x_data[first_index]*1000:.2f} mT)',
-        xy=(x_data[first_index]*1000, difference.iloc[first_index]),
-        xytext=(x_data[first_index]*1000-20, difference.iloc[first_index]+50),
-        fontproperties={'family': 'serif', 'size': 12, 'weight': 'regular'}
-    )
+    # ax.annotate(
+    #     f'Start of Deviation: ({x_data[first_index]*1000:.2f} mT)',
+    #     xy=(x_data[first_index]*1000, difference.iloc[first_index]),
+    #     xytext=(x_data[first_index]*1000-20, difference.iloc[first_index]+50),
+    #     fontproperties={'family': 'serif', 'size': 12, 'weight': 'regular'}
+    # )
 
 
 
@@ -93,14 +93,14 @@ for interval in range(len(intervals)-1):
     intersection_points.append({'Interval': f'Interval {interval+1}', 'Tc': x_intersection, 'Intersection': (x_intersection, y_intersection)})
 
 # Plotting the Intersection
-for point in intersection_points:
-    ax.scatter(point["Intersection"][0]*1000, point["Intersection"][1]*1000, s=100, zorder=2)
-    ax.annotate(
-        f'Field$_i$$_n$$_t$: ({(point["Tc"])*1000:.2f} mT)',
-        xy=point["Intersection"],
-        xytext=(point["Intersection"][0]*1000-20, point["Intersection"][1]*1000+50),
-        fontproperties={'family': 'serif', 'size': 12, 'weight': 'regular'}
-    )
+# for point in intersection_points:
+#     ax.scatter(point["Intersection"][0]*1000, point["Intersection"][1]*1000, s=100, zorder=2)
+#     ax.annotate(
+#         f'Field$_i$$_n$$_t$: ({(point["Tc"])*1000:.2f} mT)',
+#         xy=point["Intersection"],
+#         xytext=(point["Intersection"][0]*1000-20, point["Intersection"][1]*1000+50),
+#         fontproperties={'family': 'serif', 'size': 12, 'weight': 'regular'}
+#     )
 
 
 
@@ -127,10 +127,12 @@ for tick in ax2.get_yticklabels():
 lines, labels = ax.get_legend_handles_labels()
 lines2, labels2 = ax2.get_legend_handles_labels()
 ax.legend(lines + lines2, labels + labels2, prop=legend_font, loc='upper center')
+ax.set_xlim(0, 25)
+ax.set_ylim(0, 150)
 
 plt.grid(True)
 
-# plt.savefig(title+'All.pdf', format='pdf', bbox_inches='tight')
-# plt.savefig(title+'All.png', format='png', bbox_inches='tight')
+plt.savefig(title+'All.pdf', format='pdf', bbox_inches='tight')
+plt.savefig(title+'All.png', format='png', bbox_inches='tight')
 
 plt.show()
