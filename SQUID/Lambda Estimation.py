@@ -24,9 +24,9 @@ phi_0 = 2.067833848E-15  # Wb
 mu_0  = 1.25663706212E-6
 pi_value = math.pi
 
-a = 2205E-6
-b = 1830E-6
-d = 2.702E-6
+a = 2200E-6
+b = 2200E-6
+d = 2.7E-6
 v = a * b * d
 
 fontdict = {'fontsize': 14, 'fontweight': 'regular', 'fontfamily': 'serif'}
@@ -35,41 +35,50 @@ tick_font = {'family': 'serif', 'size': 12, 'weight': 'regular'}
 ################################################################
 
 # file path
-file = r"D:\MyData\CERN\R192-5\SQUID\M(H)_loop_192_5_5K_WholeLoop.dc.dat"
+file = r"D:\MyData\CERN\R183-5\SQUID\M(H)_loop_183_5_11K_HighFields.dc.dat"
 title = "Fitted Magnetization of Nb$_3$Sn for Lambda, Sample 192-5"
 
 # Read SQUID data and select relevant columns
 df = read_squid_data(file).loc[:, ['Field (Oe)', 'Long Moment (emu)']]
-chanck = int(len(df['Field (Oe)'])/4)
-df  = df.iloc[1*chanck+0:2*chanck+2, :]
-df['Log'] = np.log(df['Field (Oe)']*1E-4)
+df = df[(df['Field (Oe)'] >= 0) & (df['Field (Oe)'] <= 68500)]
+# chanck = int(len(df['Field (Oe)'])/4)
+# df  = df.iloc[1*chanck+0:2*chanck+2, :]
+df['Field (Oe)'] = np.log(df['Field (Oe)']*1E-4)
 df['Mag'] = df['Long Moment (emu)']*1E-3/v
+
+grouped_by  = df.groupby("Field (Oe)")
+df = grouped_by["Mag"].apply(
+            lambda group: ((group.max() + group.min()) / 2)
+            if len(group) > 1 
+            else np.nan
+        ).reset_index(name="diff")
 ################################################################
 
 fig, ax = plt.subplots(figsize=(10, 8))
-ax.scatter(df['Log'], df['Mag'],
+ax.scatter(df['Field (Oe)'], df['diff'],
         # linewidth=2,
         color= "black",
         label="Experimental Data"
     )
+
 ###############################################################
 
-interval = (1, 2)
+interval = (1.6, 2)
 start, end = interval
-masked_data = df[(df["Log"] >= start) & (df["Log"] <= end)]
+masked_data = df[(df['Field (Oe)'] >= start) & (df['Field (Oe)'] <= end)]
 
-x_interval = masked_data["Log"]
-y_interval = masked_data['Mag']
+x_interval = masked_data['Field (Oe)']
+y_interval = masked_data['diff']
 
 params, _ = curve_fit(linear, x_interval, y_interval)
 
-x_data =df['Log']
+x_data =df['Field (Oe)']
 y_fit = linear(x_data, params[0], params[1])
 ax.plot(x_data, y_fit, label="Fitted Line", linewidth=2, color="red")
-
+print(params)
 ################################################################
 
-lambda_value = math.sqrt((phi_0)/(8*pi_value*params[0]*mu_0))
+lambda_value = math.sqrt((phi_0)/(8*pi_value*-params[0]*mu_0))
 
 print(math.exp(-params[1]/params[0]))
 
@@ -89,7 +98,7 @@ for tick in ax.get_xticklabels():
 for tick in ax.get_yticklabels():
     tick.set(**tick_font)
 
-ax.legend(prop=legend_font)
+# ax.legend(prop=legend_font)
 
 
 plt.grid(True)

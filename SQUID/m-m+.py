@@ -16,25 +16,30 @@ def read_squid_data(filename):
 
 
 # Data directory
-file = r"D:\Data\CERN\R183-5\SQUID\M(H)_loop_183_5_11K_HighFields.dc.dat"
+# file = r"D:\MyData\CERN\R183-5\SQUID\M(H)_loop_183_5_11K_HighFields.dc.dat"
+file = r"D:\MyData\CERN\R183-5\SQUID\M(H)_loop_183_5_5K_WholeLoop.dc.dat"
 
-title= "J$_c^G$ of Nb$_3$Sn Thin Film, Sample 183-5, 11 K"
+title= "Nb$_3$Sn Thin Film, Sample 183-5, 11K"
 
 # Input sample dimension
 a = 2275E-6
 b = 2143E-6
 d = 2.717E-6
-coefficient = 4 / (a**2 * b * d * (1 - (a / (3 * b))))
+v = a *b* d
+
 
 # Interval for x-axis (Field values)
 interval_start = 0
-interval_end = 70000
+interval_end = 68000
 
 # Create a figure and axis
 fig, ax = plt.subplots(figsize=(10, 8))
 
 df = read_squid_data(file).loc[:, ['Field (Oe)', 'Long Moment (emu)']]
+df['Field (Oe)'] = -df['Field (Oe)']
+df['Long Moment (emu)'] = -df['Long Moment (emu)']
 
+df = df[(df['Field (Oe)'] >= interval_start) & (df['Field (Oe)'] <= interval_end)]
 df1 = df.groupby("Field (Oe)")['Long Moment (emu)'].apply(
             lambda group: 1 * (((group.max() + group.min())) / 2)
             if len(group) > 1 
@@ -65,7 +70,7 @@ ax.scatter(
 # Customize labels, titles, fonts, and legend
 fontdict = {'fontsize': 14, 'fontweight': 'regular', 'fontfamily': 'serif'}
 ax.set_xlabel("Field (Oe)", fontdict)
-ax.set_ylabel("Long Moment (emu)", fontdict)
+ax.set_ylabel("M A/m", fontdict)
 
 # ax.set_title(title, fontdict)
 
@@ -78,11 +83,11 @@ for tick in ax.get_yticklabels():
 legend_font = {'family': 'serif', 'size': 12, 'weight': 'regular'}
 ax.legend(prop=legend_font)
 
-# # # Display the plot
-# plt.grid(True)
-# plt.tight_layout()
+
+plt.grid(True)
+plt.tight_layout()
 
 
-# plt.savefig(title+'.pdf', format='pdf', bbox_inches='tight')
-# plt.savefig(title+'.png', format='png', bbox_inches='tight')
+plt.savefig(title+'.pdf', format='pdf', bbox_inches='tight')
+plt.savefig(title+'.png', format='png', bbox_inches='tight')
 plt.show()
