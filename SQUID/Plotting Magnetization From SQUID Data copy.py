@@ -14,14 +14,14 @@ def read_squid_data(filename):
 
 # List of file paths and legend labels
 file = [
-    (r"D:\MyData\CERN\R168-5\M(H)_loop_168_5_5K_WholeLoop.dc.dat", "5K"),
+    (r"D:\MyData\CERN\R168-5\SQUID\M(H)_loop_168_5_5K_WholeLoop.dc.dat", "5K"),
     # (r"D:\Data\SQUID Data\Nb3Sn ThinFilm\R81-5\Mag Loop\M(H)_loop_81_5_5K_WholeLoop.dc.dat", "5K"),
     # (r"D:\Data\SQUID Data\Nb3Sn ThinFilm\R81-5\Mag Loop\M(H)_loop_81_5_7K_WholeLoop.dc.dat", "7K"),
     # (r"D:\Data\SQUID Data\Nb3Sn ThinFilm\R81-5\Mag Loop\M(H)_loop_81_5_8K_WholeLoop.dc.dat", "8K"),
     # (r"D:\Data\SQUID Data\Nb3Sn ThinFilm\R81-5\Mag Loop\M(H)_loop_81_5_9K_WholeLoop.dc.dat", "9K"),
     
 ]
-file_path_infield = r"D:\MyData\CERN\R168-5\KHM\Nb3Sn_Thin_Film_KHM_5K_infield.dc.dat"
+file_path_infield = r"D:\MyData\CERN\R168-5\SQUID\KHM\Nb3Sn_Thin_Film_KHM_5K_infield.dc.dat"
 
 
 df_infield = read_squid_data(file_path_infield).loc[:, ['Field (Oe)', 'Long Moment (emu)']]
@@ -78,8 +78,8 @@ x_axis_end = 30000
 y_axis_start = -0.30
 y_axis_end = 0.015
 
-plt.xlim(x_axis_start / 10000, x_axis_end / 10000)
-plt.ylim(y_axis_start, y_axis_end)
+# plt.xlim(x_axis_start / 10000, x_axis_end / 10000)
+# plt.ylim(y_axis_start, y_axis_end)
 
 ax.set_title(title, fontdict)
 
@@ -87,8 +87,8 @@ plt.grid(True)
 plt.tight_layout()
 
 # # Saving the plot
-plt.savefig(title+'KHM.pdf', format='pdf', bbox_inches='tight')
-plt.savefig(title+'KHM.png', format='png', bbox_inches='tight')
+# plt.savefig(title+'KHM.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig(title+'KHM.png', format='png', bbox_inches='tight')
 
 # Display the plot
 plt.show()
