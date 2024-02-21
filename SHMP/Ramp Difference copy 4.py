@@ -15,7 +15,7 @@ def linear(x, a, b):
     return a * x + b
 
 # Provide the file path
-file = r'D:\MyData\CERN\R192-5\SHMP\Ramp\hc1_ramp2090.dat'
+file = r'D:\Data\CERN\R192-5\SHMP\Ramp\hc1_ramp2090.dat'
 title = "Ramp for 2090"
 
 # Read the data from the file, skipping lines starting with '#'
