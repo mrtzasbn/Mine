@@ -14,7 +14,7 @@ def read_squid_data(filename):
 
 # List of file paths and legend labels
 file = [
-    (r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_14K_HighFields.dc.dat", "14K"),
+    (r"D:\Data\CERN\R173-5\SQUID\M(H)_loop_173_5_11K_HighFields.dc.dat", "11K"),
     # (r"D:\MyData\CERN\R168-5\M(H)_loop_168_5_8K_HighFields.dc.dat", "8K"),
     # (r"D:\MyData\CERN\R168-5\M(H)_loop_168_5_11K_HighFields.dc.dat", "11K"),
     # (r"D:\MyData\CERN\R168-5\M(H)_loop_168_5_14K_HighFields.dc.dat", "14K"),

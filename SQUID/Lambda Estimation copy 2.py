@@ -38,39 +38,62 @@ tick_font = {'family': 'serif', 'size': 12, 'weight': 'regular'}
 file = r"D:\Data\CERN\R173-5\SQUID\M(H)_loop_173_5_11K_HighFields.dc.dat"
 title = "Fitted Magnetization of Nb$_3$Sn for Lambda, Sample 173-5"
 
+file22 = r"D:\Data\CERN\R173-5\SQUID\M(H)_loop_173_5_22K.dc.dat"
+
 # Read SQUID data and select relevant columns
 df = read_squid_data(file).loc[:, ['Field (Oe)', 'Long Moment (emu)']]
 df = df[(df['Field (Oe)'] >= 0) & (df['Field (Oe)'] <= 70000)]
+
+df22 = read_squid_data(file22).loc[:, ['Field (Oe)', 'Long Moment (emu)']]
+
 
 # chanck = int(len(df['Field (Oe)'])/4)
 # df  = df.iloc[1*chanck+0:2*chanck+2, :]
 
 df['Field (Oe)'] = df['Field (Oe)']
-df['Mag'] = df['Long Moment (emu)']#*1E-3/v
+df['Mag'] = df['Long Moment (emu)']
+
+
+
 
 grouped_by  = df.groupby("Field (Oe)")
 df = grouped_by["Mag"].apply(
             lambda group: ((group.max() + group.min()) / 2)
             if len(group) > 1 
             else np.nan
-        ).reset_index(name="diff")
+        ).reset_index(name="rev")
+################################################################
+df = pd.merge(df, df22, on='Field (Oe)', how='outer')
+
+df["rev-cu"] = (df['rev']-df['Long Moment (emu)'])
+
+# df['Field (Oe)'] = np.log(df['Field (Oe)']*1E-4)
 ################################################################
 
 fig, ax = plt.subplots(figsize=(10, 8))
-ax.scatter(df['Field (Oe)'], df['diff'],
+ax.plot(df['Field (Oe)'], df['rev'],
         # linewidth=2,
         color= "black",
-        label="Experimental Data"
+        label="rev"
     )
-
+ax.plot(df['Field (Oe)'], df['rev-cu'],
+        # linewidth=2,
+        color= "red",
+        label="rev-cu"
+    )
+ax.plot(df['Field (Oe)'], df['Long Moment (emu)'],
+        # linewidth=2,
+        color= "blue",
+        label="Cu at 22"
+    )
 ###############################################################
 
-# interval = (1.6, 2)
+# interval = (0.2, 2)
 # start, end = interval
 # masked_data = df[(df['Field (Oe)'] >= start) & (df['Field (Oe)'] <= end)]
 
 # x_interval = masked_data['Field (Oe)']
-# y_interval = masked_data['diff']
+# y_interval = masked_data['rev-cu']
 
 # params, _ = curve_fit(linear, x_interval, y_interval)
 
@@ -80,18 +103,16 @@ ax.scatter(df['Field (Oe)'], df['diff'],
 # print(params)
 ################################################################
 
-# lambda_value = math.sqrt((phi_0)/(8*pi_value*-params[0]*mu_0))
+# lambda_value = math.sqrt((phi_0)/(8*pi_value*params[0]*mu_0))
 
-# print(math.exp(-params[1]/params[0]))
-
-# Annotation below the legend
-# annotation = f'Fitted λ(@5): {lambda_value/1E-9:.2f} nm\nFitted B$_c$$_2$ (@5): {math.exp(-params[1]/params[0]):.2f} T'
+# # Annotation below the legend
+# annotation = f'Fitted λ(@5): {lambda_value/1E-9:.2f} nm'
 # ax.text(0.5, 0.05, annotation, transform=ax.transAxes, ha="center",fontsize=20, fontdict=fontdict)
 ################################################################
 
 # Customize labels, titles, fonts, and legend
-ax.set_xlabel("ln(B)", fontdict)
-ax.set_ylabel("Magnetization (A/m)", fontdict)
+ax.set_xlabel("Field (Oe)", fontdict)
+ax.set_ylabel("Magnetization (emu)", fontdict)
 ax.set_title(title, fontdict)
 
 
@@ -100,7 +121,7 @@ for tick in ax.get_xticklabels():
 for tick in ax.get_yticklabels():
     tick.set(**tick_font)
 
-# ax.legend(prop=legend_font)
+ax.legend(prop=legend_font)
 
 
 plt.grid(True)
