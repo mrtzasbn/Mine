@@ -21,14 +21,14 @@ def tc_data(file_path):
     tc = read_squid_data(file_path).loc[:, ["Temperature (K)", "m' (emu)", 'm" (emu)']]
     return tc
 
-file = r"D:\MyData\CERN\R168-5\Tc_7T.ac.dat"
-title = "T$_c$ of Nb$_3$Sn Thin Film, Sample 168-5, 7T"
+file = r"D:\MyData\CERN\R173-5\SQUID\Tc_6T.ac.dat"
+title = "T$_c$ of Nb$_3$Sn Thin Film, Sample 173-5, 6T"
 
 intervals = [
     # (16.9, 17.5),
     # (13, 14.5),
-    (8.48, 9.2),
-    (10.3, 13),
+    (10.06, 10.74),
+    (11.88, 14),
     
 ]
 
@@ -106,7 +106,8 @@ ax.legend(prop=legend_font)
 ax.set_title(title, fontdict)
 
 # plt.xlim(13, 18.1)
-# plt.ylim(df["m' (emu)"].min()+(df["m' (emu)"].min())/10, df["m' (emu)"].max()-(df["m' (emu)"].min())/10)
+plt.ylim(df["m' (emu)"].min()+(df["m' (emu)"].min())/10, df["m' (emu)"].max()-(df["m' (emu)"].min())/10)
+# plt.ylim(df['m" (emu)'].min()+(df['m" (emu)'].min())/10, df['m" (emu)'].max()-(df['m" (emu)'].min())/10)
 plt.grid(True)
 
 plt.savefig(title + 'Fit01.TcDet.pdf', format='pdf', bbox_inches='tight')

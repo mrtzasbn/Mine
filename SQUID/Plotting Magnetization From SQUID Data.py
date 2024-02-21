@@ -14,7 +14,7 @@ def read_squid_data(filename):
 
 # List of file paths and legend labels
 file = [
-    (r"D:\MyData\CERN\R183-5\SQUID\M(H)_loop_183_5_5K_WholeLoop.dc.dat", "5K"),
+    (r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_14K_HighFields.dc.dat", "14K"),
     # (r"D:\MyData\CERN\R168-5\M(H)_loop_168_5_8K_HighFields.dc.dat", "8K"),
     # (r"D:\MyData\CERN\R168-5\M(H)_loop_168_5_11K_HighFields.dc.dat", "11K"),
     # (r"D:\MyData\CERN\R168-5\M(H)_loop_168_5_14K_HighFields.dc.dat", "14K"),
@@ -27,7 +27,7 @@ file = [
 
 
 
-title = "Magnetization of Nb$_3$Sn, Sample 168-5"
+title = "Magnetization of Nb$_3$Sn, Sample 173-5, 14K"
 
 
 # Interval for x-axis (Field values)
@@ -39,7 +39,8 @@ fig, ax = plt.subplots(figsize=(10, 8))
 # Loop through each data file
 for file_name, legend_label in file:
     # Read SQUID data and select relevant columns
-    df = read_squid_data(file_name).loc[:, ['Field (Oe)', 'Long Moment (emu)']]
+    df = read_squid_data(file_name).loc[:, ['Field (Oe)', 'Long Moment (emu)', "Long Algorithm"]]
+
 
     # Mask the data based on the interval
     masked_data = df[(df['Field (Oe)'] >= interval_start) & (df['Field (Oe)'] <= interval_end)]
@@ -49,7 +50,7 @@ for file_name, legend_label in file:
         masked_data['Field (Oe)']/10000 ,
         masked_data['Long Moment (emu)'],
         # linewidth=2,
-        # color= "black",
+        color= "black",
         label=legend_label
     )
 
