@@ -15,7 +15,7 @@ def read_squid_data(filename):
 
 
 # Parameters
-file = r"D:\MyData\CERN\R168-5\Tc_6T.ac.dat"
+file = r"D:\MyData\CERN\R173-5\SQUID\Tc_0T.ac.dat"
 title = "T$_c$ of Nb$_3$Sn Thin Film, Sample 168-5"
 
 # Read SQUID data and extract relevant columns
@@ -55,8 +55,8 @@ ax2.grid(True)
 
 plt.tight_layout()
 # Save and display the plot
-plt.savefig(title + '.Tc.pdf', format='pdf', bbox_inches='tight')
-plt.savefig(title + '.Tc.png', format='png', bbox_inches='tight')
+# plt.savefig(title + '.Tc.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig(title + '.Tc.png', format='png', bbox_inches='tight')
 
 # df.to_csv('title.csv', index=False)
 plt.show()

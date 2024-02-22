@@ -14,14 +14,14 @@ def read_squid_data(filename):
 
 # List of file paths and legend labels
 file = [
-    (r"D:\MyData\CERN\R168-5\SQUID\M(H)_loop_168_5_5K_WholeLoop.dc.dat", "5K"),
+    (r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_5K_WholeLoop.dc.dat", "5K"),
     # (r"D:\Data\SQUID Data\Nb3Sn ThinFilm\R81-5\Mag Loop\M(H)_loop_81_5_5K_WholeLoop.dc.dat", "5K"),
     # (r"D:\Data\SQUID Data\Nb3Sn ThinFilm\R81-5\Mag Loop\M(H)_loop_81_5_7K_WholeLoop.dc.dat", "7K"),
     # (r"D:\Data\SQUID Data\Nb3Sn ThinFilm\R81-5\Mag Loop\M(H)_loop_81_5_8K_WholeLoop.dc.dat", "8K"),
     # (r"D:\Data\SQUID Data\Nb3Sn ThinFilm\R81-5\Mag Loop\M(H)_loop_81_5_9K_WholeLoop.dc.dat", "9K"),
     
 ]
-file_path_infield = r"D:\MyData\CERN\R168-5\SQUID\KHM\Nb3Sn_Thin_Film_KHM_5K_infield.dc.dat"
+file_path_infield = r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_5K_Miessner.dc.dat"
 
 
 df_infield = read_squid_data(file_path_infield).loc[:, ['Field (Oe)', 'Long Moment (emu)']]

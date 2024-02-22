@@ -61,7 +61,7 @@ def read_squid_data(filename):
     return squid_data_df
 
 
-file = r"D:\MyData\CERN\R183-5\SQUID\Tc_0T.ac.dat"
+file = r"D:\MyData\CERN\R173-5\SQUID\Tc_0T.ac.dat"
 
 df = read_squid_data(file).loc[:, ["Temperature (K)", "m' (emu)", 'm" (emu)', "m' Scan Std Dev", 'm" Scan Std Dev']]
 df = df[(df['m" Scan Std Dev']<9.99E-7) & (df["m' Scan Std Dev"]<9.99E-7)]

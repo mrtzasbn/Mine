@@ -14,11 +14,11 @@ def read_squid_data(filename):
 
 
 # List of file paths and legend labels
-file = r"D:\MyData\CERN\R173-5\SQUID\AC-5K_Field_R173-5_High.ac.dat"
-title= "Nb$_3$Sn Thin Film, Sample 173-5, High Field"
+file = r"D:\MyData\CERN\R173-5\SQUID\AC-5K_Field_R173-5_Low.ac.dat"
+title= "Nb$_3$Sn Thin Film, Sample 173-5, Low Field"
 
 df = read_squid_data(file).loc[:, ['Field (Oe)', "m' (emu)", 'm" (emu)', "Regression Fit"]]
-df = df[df["Regression Fit"]>9.9998E-1]
+# df = df[df["Regression Fit"]>9.9E-1]
 # df  = df.groupby("Field (Oe)")[["m' (emu)", 'm" (emu)']].mean().reset_index()
 
 # Create subplots

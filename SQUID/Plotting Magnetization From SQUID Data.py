@@ -14,12 +14,10 @@ def read_squid_data(filename):
 
 # List of file paths and legend labels
 file = [
-    (r"D:\Data\CERN\R173-5\SQUID\M(H)_loop_173_5_11K_HighFields.dc.dat", "11K"),
-    # (r"D:\MyData\CERN\R168-5\M(H)_loop_168_5_8K_HighFields.dc.dat", "8K"),
-    # (r"D:\MyData\CERN\R168-5\M(H)_loop_168_5_11K_HighFields.dc.dat", "11K"),
-    # (r"D:\MyData\CERN\R168-5\M(H)_loop_168_5_14K_HighFields.dc.dat", "14K"),
-    # (r"D:\Data\SQUID Data\Nb3Sn ThinFilm\R81-5\Mag Loop\M(H)_loop_81_5_9K_WholeLoop.dc.dat", "9K"),
-
+    (r"D:\MyData\CERN\R192-5\SQUID\M(H)_loop_192_5_5K_WholeLoop.dc.dat", "R192-5"),
+    (r"D:\MyData\CERN\R183-5\SQUID\M(H)_loop_183_5_5K_WholeLoop.dc.dat", "R183-5"),
+    (r"D:\MyData\CERN\R168-5\SQUID\M(H)_loop_168_5_5K_WholeLoop.dc.dat", "R168-5"),
+    (r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_5K_WholeLoop.dc.dat", "R173-5"),
     
 ]
 
@@ -27,7 +25,7 @@ file = [
 
 
 
-title = "Magnetization of Nb$_3$Sn, Sample 173-5, 14K"
+title = "Magnetization of Nb$_3$Sn, 5K"
 
 
 # Interval for x-axis (Field values)
@@ -40,17 +38,18 @@ fig, ax = plt.subplots(figsize=(10, 8))
 for file_name, legend_label in file:
     # Read SQUID data and select relevant columns
     df = read_squid_data(file_name).loc[:, ['Field (Oe)', 'Long Moment (emu)', "Long Algorithm"]]
+    max = df['Long Moment (emu)'].max()
 
 
     # Mask the data based on the interval
     masked_data = df[(df['Field (Oe)'] >= interval_start) & (df['Field (Oe)'] <= interval_end)]
 
     # Plotting Jc Field within the specified interval
-    ax.scatter(
+    ax.plot(
         masked_data['Field (Oe)']/10000 ,
-        masked_data['Long Moment (emu)'],
+        masked_data['Long Moment (emu)']/max,
         # linewidth=2,
-        color= "black",
+        # color= "black",
         label=legend_label
     )
 
@@ -63,7 +62,7 @@ for file_name, legend_label in file:
 # Customize labels, titles, fonts, and legend
 fontdict = {'fontsize': 14, 'fontweight': 'regular', 'fontfamily': 'serif'}
 ax.set_xlabel("Field (T)", fontdict)
-ax.set_ylabel("Long Moment (emu)", fontdict)
+ax.set_ylabel("Long Moment (Normalized)", fontdict)
 ax.set_title("Long Moment", fontdict)
 
 tick_font = {'family': 'serif', 'size': 12, 'weight': 'regular'}
