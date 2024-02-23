@@ -33,24 +33,33 @@ def extract_chunks(df):
     return list(chunk_data.values())
 
 # List of file paths and legend labels
-file = r"D:\MyData\CERN\R173-5\SQUID\AC-5K_Field_R173-5_High.ac.dat"
+file = r"D:\MyData\CERN\R192-5\SQUID\AC-5K_Field_R192-5_High.ac.dat"
 title= "Nb$_3$Sn Thin Film, Sample 173-5, High Field"
 
 df = read_squid_data(file).loc[:, ['Field (Oe)', "m' (emu)", 'm" (emu)', "Regression Fit"]]
-
 dfs = extract_chunks(df)
-# Plotting
+
+
+df1 = dfs[0]
+df2 = dfs[1]
+df3 = dfs[2]
+
 fig, ax = plt.subplots(figsize=(10, 8))
 
 for i, df_chunk in enumerate(dfs):
     df_chunk = df_chunk[df_chunk["Regression Fit"] > 9.99985E-1]
-    ax.plot(df_chunk['Field (Oe)'] / 10, df_chunk['m" (emu)'], label=f"data {i+1}", marker="o")
+    ax.plot(df_chunk['Field (Oe)'], df_chunk['m" (emu)'], label=f"data {i+1}", marker="o")
+
+ax.plot(df1["Field (Oe)"], df1['m" (emu)']-df2['m" (emu)'], label="1-2")
+ax.plot(df1["Field (Oe)"], df1['m" (emu)']-df3['m" (emu)'], label = "1-3")
+ax.plot(df1["Field (Oe)"], df2['m" (emu)']-df3['m" (emu)'], label = "2-3")
+
 
 # Set labels and title
 fontdict = {'fontsize': 14, 'fontweight': 'regular', 'fontfamily': 'serif'}
 legend_font = {'family': 'serif', 'size': 12, 'weight': 'regular'}
 
-ax.set_xlabel("Field (mT)", fontdict)
+ax.set_xlabel("Field (Oe)", fontdict)
 ax.set_ylabel('m" (emu)', fontdict)
 
 ax.set_title(title, fontdict)

@@ -14,10 +14,10 @@ def read_squid_data(filename):
 
 # List of file paths and legend labels
 file = [
-    (r"D:\MyData\CERN\R192-5\SQUID\M(H)_loop_192_5_5K_WholeLoop.dc.dat", "R192-5"),
-    (r"D:\MyData\CERN\R183-5\SQUID\M(H)_loop_183_5_5K_WholeLoop.dc.dat", "R183-5"),
-    (r"D:\MyData\CERN\R168-5\SQUID\M(H)_loop_168_5_5K_WholeLoop.dc.dat", "R168-5"),
-    (r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_5K_WholeLoop.dc.dat", "R173-5"),
+    (r"D:\MyData\CERN\R183-5\SQUID\M(H)_loop_183_5_5K_WholeLoop.dc.dat", "R192-5"),
+    # (r"D:\MyData\CERN\R183-5\SQUID\M(H)_loop_183_5_5K_WholeLoop.dc.dat", "R183-5"),
+    # (r"D:\MyData\CERN\R168-5\SQUID\M(H)_loop_168_5_5K_WholeLoop.dc.dat", "R168-5"),
+    # (r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_5K_WholeLoop.dc.dat", "R173-5"),
     
 ]
 
@@ -45,11 +45,11 @@ for file_name, legend_label in file:
     masked_data = df[(df['Field (Oe)'] >= interval_start) & (df['Field (Oe)'] <= interval_end)]
 
     # Plotting Jc Field within the specified interval
-    ax.plot(
+    ax.scatter(
         masked_data['Field (Oe)']/10000 ,
         masked_data['Long Moment (emu)']/max,
         # linewidth=2,
-        # color= "black",
+        color= "black",
         label=legend_label
     )
 
