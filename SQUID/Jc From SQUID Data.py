@@ -42,14 +42,6 @@ title= "J$_c^G$ of Nb$_3$Sn Thin Film, Sample 173-5, 14K"
 
 # Input sample dimension
 
-# b_1 = 2432E-6
-# b_2 = 2492E-6
-
-# a_1 = 2376E-6
-# a_2 = 2313E-6
-
-# b = (b_1 + b_2)/2
-# a = (a_1 + a_2)/2
 
 a = 2802E-6
 b = 2428E-6  # Smaller Than "a"

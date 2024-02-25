@@ -136,8 +136,8 @@ file_name_to_save = filetoread.split("/")[-1][:-4]
 # file_name_to_save = file_name_to_save[-1][:-4]
 
 ax.set_title(file_name_to_save, fontdict)
-# plt.savefig(file_name_to_save+'scaled.pdf', format='pdf', bbox_inches='tight')
-# plt.savefig(file_name_to_save+'scaled.png', format='png', bbox_inches='tight')
+plt.savefig(file_name_to_save+'scaled.pdf', format='pdf', bbox_inches='tight')
+plt.savefig(file_name_to_save+'scaled.png', format='png', bbox_inches='tight')
 
 
 plt.show()
