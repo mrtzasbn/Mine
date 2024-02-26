@@ -60,7 +60,8 @@ for i, (file, label) in enumerate(files):
     df = df.sort_values(by='T')
 
     # Main Data
-    ax.scatter(df["T"]/T_intercept, df["Field"], s=50, label=f"{label},\nSlope: {slope:.2f}, T$_c$(0): {tc}K, H$_{{\mathrm{{WHH}}}}$(0): ({h_Whh:.2f} T)", color=color)
+    ax.scatter(df["T"]/T_intercept, df["Field"], s=50,
+               label=f"{label},\nSlope: {slope:.2f}, T$_c$(0): {tc}K, H$_{{\mathrm{{WHH}}}}$(0): ({h_Whh:.2f} T)\n---------------------------------", color=color)
     
 
 
@@ -69,7 +70,7 @@ for i, (file, label) in enumerate(files):
 
 
 fontdict = {'fontsize': 14, 'fontweight': 'regular', 'fontfamily': 'serif'}
-legend_font = {'family': 'serif', 'size': 12, 'weight': 'regular'}
+legend_font = {'family': 'serif', 'size': 10, 'weight': 'regular'}
 tick_font = {'family': 'serif', 'size': 12, 'weight': 'regular'}
 
 
