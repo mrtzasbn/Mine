@@ -20,7 +20,7 @@ def linear(x, a, b):
     return a * x + b
 
 # Data directory
-file = r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_14K_HighFields.dc.dat"
+file = r"D:\MyData\CERN\R94-4\SQUID\M(H)_loop_94_4_11K.dc.dat"
 # file = r"D:\MyData\CERN\R183-5\SQUID\M(H)_loop_183_5_5K_WholeLoop.dc.dat"
 
 title = "Nb$_3$Sn Thin Film, Sample 173-5, 14K"
@@ -36,7 +36,7 @@ d = 2.67E-6
 
 # Interval for x-axis (Field values)
 interval_start = 0
-interval_end = 70000
+interval_end = 69000
 
 df = read_squid_data(file).loc[:, ['Field (Oe)', 'Long Moment (emu)']]
 df['Field (Oe)'] = df['Field (Oe)']*1E-4

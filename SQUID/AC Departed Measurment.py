@@ -33,13 +33,13 @@ def extract_chunks(df):
     return list(chunk_data.values())
 
 # List of file paths and legend labels
-file = r"D:\MyData\CERN\R192-5\SQUID\AC-5K_Field_R192-5_High.ac.dat"
+file = r"D:\MyData\CERN\R94-4\SQUID\AC-5K_Field_R94-5_High.ac.dat"
 title= "Nb$_3$Sn Thin Film, Sample R94-4, High Field"
 
 df = read_squid_data(file).loc[:, ['Field (Oe)', "m' (emu)", 'm" (emu)', "Regression Fit"]]
 
-# str = "m' (emu)"
-str = 'm" (emu)'
+str = "m' (emu)"
+# str = 'm" (emu)'
 dfs = extract_chunks(df)
 
 
@@ -78,4 +78,6 @@ for tick in ax.get_yticklabels():
 ax.grid(True)
 
 plt.tight_layout()
+plt.savefig(title + '1.pdf', format='pdf', bbox_inches='tight')
+plt.savefig(title + '1.png', format='png', bbox_inches='tight')
 plt.show()

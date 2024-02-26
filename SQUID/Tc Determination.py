@@ -21,14 +21,14 @@ def tc_data(file_path):
     tc = read_squid_data(file_path).loc[:, ["Temperature (K)", "m' (emu)", 'm" (emu)']]
     return tc
 
-file = r"D:\MyData\CERN\R94-4\SQUID\Tc_7T.ac.dat"
+file = r"D:\MyData\CERN\R94-4\SQUID\Tc_0T.ac.dat"
 # title = "T$_c$ vs Field, R94-4, First deviation from Linear in Dissipation, 7T"
-title = "$_c$ vs Field, R94-4, Intersection of Fitting, 7T"
+title = "T$_c$ vs Field, R94-4, Intersection of Fitting, 0T"
 intervals = [
     # (16.9, 17.5),
     # (13, 14.5),
-    (9.86, 10.84),
-    (11.68, 13.5),
+    (14.88, 15.22),
+    (15.6, 18),
     
 ]
 
@@ -105,7 +105,7 @@ ax.legend(prop=legend_font)
 
 ax.set_title(title, fontdict)
 
-# plt.xlim(13, 18.1)
+plt.xlim(13, 18.1)
 plt.ylim(df["m' (emu)"].min()+(df["m' (emu)"].min())/10, df["m' (emu)"].max()-(df["m' (emu)"].min())/10)
 # plt.ylim(df['m" (emu)'].min()+(df['m" (emu)'].min())/10, df['m" (emu)'].max()-(df['m" (emu)'].min())/10)
 plt.grid(True)
