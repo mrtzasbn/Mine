@@ -17,16 +17,16 @@ def tc_data(file_path):
 
 
 file = [
-    (r"D:\MyData\CERN\R168-5\Tc_1T.ac.dat", "1 T", 'o'),
-    (r"D:\MyData\CERN\R168-5\Tc_2T.ac.dat", "2 T", 's'),
-    (r"D:\MyData\CERN\R168-5\Tc_3T.ac.dat", "3 T", '^'),
-    (r"D:\MyData\CERN\R168-5\Tc_4T.ac.dat", "4 T", 'D'),
-    (r"D:\MyData\CERN\R168-5\Tc_5T.ac.dat", "5 T", 'v'),
-    (r"D:\MyData\CERN\R168-5\Tc_6T.ac.dat", "6 T", '*'),
-    (r"D:\MyData\CERN\R168-5\Tc_7T.ac.dat", "7 T", 'x')
+    (r"D:\MyData\CERN\R94-4\SQUID\Tc_1T.ac.dat", "1 T", 'o'),
+    (r"D:\MyData\CERN\R94-4\SQUID\Tc_2T.ac.dat", "2 T", 's'),
+    (r"D:\MyData\CERN\R94-4\SQUID\Tc_3T.ac.dat", "3 T", '^'),
+    (r"D:\MyData\CERN\R94-4\SQUID\Tc_4T.ac.dat", "4 T", 'D'),
+    (r"D:\MyData\CERN\R94-4\SQUID\Tc_5T.ac.dat", "5 T", 'v'),
+    (r"D:\MyData\CERN\R94-4\SQUID\Tc_6T.ac.dat", "6 T", '*'),
+    (r"D:\MyData\CERN\R94-4\SQUID\Tc_7T.ac.dat", "7 T", 'x')
 ]
 
-title = "T$_c$ of Nb$_3$Sn Thin Film, Sample 168-5"
+title = "T$_c$ of Nb$_3$Sn Thin Film, Sample R94-4"
 
 fig, ax = plt.subplots(figsize=(10, 8))
 

@@ -15,12 +15,12 @@ def read_squid_data(filename):
 
 
 # Parameters
-file = r"D:\MyData\CERN\R173-5\SQUID\Tc_0T.ac.dat"
-title = "T$_c$ of Nb$_3$Sn Thin Film, Sample 168-5"
+file = r"D:\MyData\CERN\R94-4\SQUID\Tc_0T.ac.dat"
+title = "T$_c$ of Nb$_3$Sn Thin Film, Sample 94-4"
 
 # Read SQUID data and extract relevant columns
 df = read_squid_data(file).loc[:, ["Temperature (K)", "m' (emu)", 'm" (emu)', "m' Scan Std Dev", 'm" Scan Std Dev']]
-df = df[(df['m" Scan Std Dev']<9.99E-7) & (df["m' Scan Std Dev"]<9.99E-7)]
+# df = df[(df['m" Scan Std Dev']<9.99E-7) & (df["m' Scan Std Dev"]<9.99E-7)]
 # df = df[(df["Temperature (K)"]>14)]
 
 # Create subplots

@@ -8,12 +8,12 @@ from scipy.optimize import curve_fit
 def linear(x, a, b):
     return a * x + b
 
-file = r"D:\MyData\CERN\R173-5\SQUID\Hc2_T.csv"
+file = r"D:\MyData\CERN\R94-4\SQUID\Hc2_T - Fit.csv"
 df = pd.read_csv(file)
 
-# title = "T$_c$ vs Field, R173-5, Intersection of Fitting"
-title = "T$_c$ vs Field, R173-5, First deviation from Linear in Dissipation"
-interval = [(9.5, 15.5)]
+title = "T$_c$ vs Field, R173-5, Intersection of Fitting"
+# title = "T$_c$ vs Field, R94-4, First deviation from Linear in Dissipation"
+interval = [(9.5, 15)]
 
 
 for start, end in interval:

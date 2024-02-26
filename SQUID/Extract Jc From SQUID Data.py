@@ -34,17 +34,17 @@ def groupby_squid_jc(file_path, coefficient, interval_start, interval_end, excep
 
 # Data directory
 # List of file paths and legend labels
-file = r"D:\Data\CERN\R168-5\SQUID\M(H)_loop_168_5_5K_WholeLoop.dc.dat"
+file = r"D:\MyData\CERN\R168-5\SQUID\M(H)_loop_168_5_5K_WholeLoop.dc.dat"
 
 
 # Input sample dimension
 
 
-a = 2462E-6
-b = 2344E-6  # Smaller Than "a"
-d = 2.7E-6
-coefficient = 4 / (b**2 * a * d * (1 - (b / (3 * a))))
-
+# a = 2309E-6
+# b = 2428E-6  # Smaller Than "a"
+# d = 2.7E-6
+# coefficient = 4 / (b**2 * a * d * (1 - (b / (3 * a))))
+coefficient = 1
 # Interval for x-axis (Field values)
 interval_start = 0
 interval_end = 70000

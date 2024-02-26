@@ -33,19 +33,19 @@ def groupby_squid_jc(file_path, coefficient, interval_start, interval_end, excep
 # Data directory
 # List of file paths and legend labels
 file = [
-    (r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_14K_HighFields.dc.dat", "14K"),
+    (r"D:\MyData\CERN\R94-4\SQUID\M(H)_loop_94_4_5K_WholeLoop.dc.dat", "5K"),
     # (r"D:\Data\SQUID Data\Nb3Sn ThinFilm\R81-5\Mag Loop\M(H)_loop_81_5_5K_WholeLoop.dc.dat", "6666K")
 ]
 
 
-title= "J$_c^G$ of Nb$_3$Sn Thin Film, Sample 173-5, 14K"
+title= "J$_c^G$ of Nb$_3$Sn Thin Film, Sample 94-4, 5K"
 
 # Input sample dimension
 
 
-a = 2802E-6
+a = 2309E-6
 b = 2428E-6  # Smaller Than "a"
-d = 2.67E-6
+d = 2.7E-6
 
 coefficient = 4 / (b**2 * a * d * (1 - (b / (3 * a))))
 

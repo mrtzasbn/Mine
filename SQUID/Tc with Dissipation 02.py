@@ -15,7 +15,7 @@ def read_squid_data(filename):
 
 
 # Parameters
-file = r"D:\MyData\CERN\R173-5\SQUID\Tc_0T.ac.dat"
+file = r"D:\MyData\CERN\R94-4\SQUID\Tc_0T.ac.dat"
 title = "T$_c$ of Nb$_3$Sn Thin Film, Sample 173-5"
 
 # Read SQUID data and extract relevant columns

@@ -13,10 +13,11 @@ def linear(x, a, b):
 main_colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'orange']
 
 files = [
-    (r"D:\Data\CERN\R192-5\SQUID\Hc2_T.csv", "R192-5, Interlayer: Ta, Stiochiometric"),
-    (r"D:\Data\CERN\R183-5\SQUID\Hc2_T.csv", "R183-5, Interlayer: None, Stiochiometric"),
-    (r"D:\Data\CERN\R173-5\SQUID\Hc2_T.csv", "R173-5, Interlayer: Nb, 27%Sn"),
-    (r"D:\Data\CERN\R168-5\SQUID\Hc2_T.csv", "R168-5, Interlayer: Ta, 27%Sn")
+    (r"D:\MyData\CERN\R192-5\SQUID\Hc2_T.csv", "R192-5, Interlayer: Ta, Stiochiometric"),
+    (r"D:\MyData\CERN\R183-5\SQUID\Hc2_T.csv", "R183-5, Interlayer: None, Stiochiometric"),
+    (r"D:\MyData\CERN\R173-5\SQUID\Hc2_T.csv", "R173-5, Interlayer: Nb, 27%Sn"),
+    (r"D:\MyData\CERN\R168-5\SQUID\Hc2_T.csv", "R168-5, Interlayer: Ta, 27%Sn"),
+    (r"D:\MyData\CERN\R94-4\SQUID\Hc2_T.csv", "R94-4, Interlayer: Ta, Stiochiometric")
 ]
 
 title = "Temperature vs. Field"
@@ -24,6 +25,8 @@ fig, ax = plt.subplots(figsize=(10, 8))
 
 for i, (file, label) in enumerate(files):
     df = pd.read_csv(file)
+    tc = df["T"].iloc[0]
+    print(tc)
     df = df.drop(index=0).reset_index(drop=True)
 
     start, end = (df["T"].iloc[-1], df["T"].iloc[0])
@@ -57,7 +60,7 @@ for i, (file, label) in enumerate(files):
     df = df.sort_values(by='T')
 
     # Main Data
-    ax.scatter(df["T"]/T_intercept, df["Field"], s=50, label=f"{label},\nSlope: {slope:.2f}, H$_{{\mathrm{{WHH}}}}$(0): ({h_Whh:.2f} T)", color=color)
+    ax.scatter(df["T"]/T_intercept, df["Field"], s=50, label=f"{label},\nSlope: {slope:.2f}, T$_c$(0): {tc}K, H$_{{\mathrm{{WHH}}}}$(0): ({h_Whh:.2f} T)", color=color)
     
 
 

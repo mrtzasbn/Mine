@@ -21,14 +21,14 @@ def tc_data(file_path):
     tc = read_squid_data(file_path).loc[:, ["Temperature (K)", "m' (emu)", 'm" (emu)']]
     return tc
 
-file = r"D:\MyData\CERN\R173-5\SQUID\Tc_6T.ac.dat"
-title = "T$_c$ of Nb$_3$Sn Thin Film, Sample 173-5, 6T"
-
+file = r"D:\MyData\CERN\R94-4\SQUID\Tc_7T.ac.dat"
+# title = "T$_c$ vs Field, R94-4, First deviation from Linear in Dissipation, 7T"
+title = "$_c$ vs Field, R94-4, Intersection of Fitting, 7T"
 intervals = [
     # (16.9, 17.5),
     # (13, 14.5),
-    (10.06, 10.74),
-    (11.88, 14),
+    (9.86, 10.84),
+    (11.68, 13.5),
     
 ]
 

@@ -14,8 +14,8 @@ def read_squid_data(filename):
 
 # List of file paths and legend labels
 file = [
-    (r"D:\MyData\CERN\R183-5\SQUID\M(H)_loop_183_5_5K_WholeLoop.dc.dat", "R192-5"),
-    # (r"D:\MyData\CERN\R183-5\SQUID\M(H)_loop_183_5_5K_WholeLoop.dc.dat", "R183-5"),
+    (r"D:\MyData\CERN\R94-4\SQUID\M(H)_loop_94_4_5K_WholeLoop.dc.dat", "5K"),
+    (r"D:\MyData\CERN\R94-4\SQUID\M(H)_loop_94_4_5K_Miessner.dc.dat", "Meissner"),
     # (r"D:\MyData\CERN\R168-5\SQUID\M(H)_loop_168_5_5K_WholeLoop.dc.dat", "R168-5"),
     # (r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_5K_WholeLoop.dc.dat", "R173-5"),
     
@@ -25,7 +25,7 @@ file = [
 
 
 
-title = "Magnetization of Nb$_3$Sn, 5K"
+title = "Magnetization of Nb$_3$Sn, R94-4, Ta"
 
 
 # Interval for x-axis (Field values)
@@ -38,7 +38,7 @@ fig, ax = plt.subplots(figsize=(10, 8))
 for file_name, legend_label in file:
     # Read SQUID data and select relevant columns
     df = read_squid_data(file_name).loc[:, ['Field (Oe)', 'Long Moment (emu)', "Long Algorithm"]]
-    max = df['Long Moment (emu)'].max()
+    # max = df['Long Moment (emu)'].max()
 
 
     # Mask the data based on the interval
@@ -47,9 +47,9 @@ for file_name, legend_label in file:
     # Plotting Jc Field within the specified interval
     ax.scatter(
         masked_data['Field (Oe)']/10000 ,
-        masked_data['Long Moment (emu)']/max,
+        masked_data['Long Moment (emu)'],
         # linewidth=2,
-        color= "black",
+        # color= "black",
         label=legend_label
     )
 
