@@ -76,7 +76,7 @@ tick_font = {'family': 'serif', 'size': 12, 'weight': 'regular'}
 
 ax.set_xlabel("T/T$_c$", fontdict)
 ax.xaxis.set_major_locator(ticker.MultipleLocator(0.1))
-ax.set_ylabel("Field (T)", fontdict)
+ax.set_ylabel("\u03BC$_0$H$_c$$_2$ (T)", fontdict)
 
 for tick in ax.get_xticklabels():
     tick.set(**tick_font)

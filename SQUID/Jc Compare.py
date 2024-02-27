@@ -3,10 +3,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 files = [
-    # (r"D:\MyData\CERN\R192-5\SQUID\JcData.csv", "R192-5, Interlayer: Ta, Stiochiometric"),
-    (r"D:\MyData\CERN\R183-5\SQUID\JcData.csv", "R183-5, Interlayer: None, Stiochiometric"),
-    (r"D:\MyData\CERN\R173-5\SQUID\JcData.csv", "R173-5, Interlayer: Nb, 27%Sn"),
-    # (r"D:\MyData\CERN\R168-5\SQUID\JcData.csv", "R168-5, Interlayer: Ta, 27%Sn"),
+    (r"D:\MyCodes\Mine\JcDataR192-5.csv", "R192-5, Interlayer: Ta, Stiochiometric"),
+    (r"D:\MyCodes\Mine\JcDataR183-5.csv", "R183-5, Interlayer: None, Stiochiometric"),
+    (r"D:\MyCodes\Mine\JcDataR173-5.csv", "R173-5, Interlayer: Nb, 27%Sn"),
+    (r"D:\MyCodes\Mine\JcDataR168-5.csv", "R168-5, Interlayer: Ta, 27%Sn"),
     # (r"D:\MyData\CERN\R94-4\SQUID\JcData.csv", "R94-4, Interlayer: Ta, Stiochiometric")
 ]
 
@@ -22,8 +22,9 @@ for file, label in files:
 
 # Customize labels, titles, fonts, and legend
 fontdict = {'fontsize': 14, 'fontweight': 'regular', 'fontfamily': 'serif'}
-ax.set_xlabel("Field (Oe)", fontdict)
-ax.set_ylabel("Jc", fontdict)  # Adjust this label as needed
+ax.set_xlabel("Field (T)", fontdict)
+# ax.set_ylabel("J$_c^G$ ($\\times 10^{{{:d}}}$ A/m$^2$)".format(10), fontdict)  # Adjust this label as needed
+ax.set_ylabel("J$_c^G$ (Normalized)", fontdict)  # Adjust this label as needed
 
 ax.set_title(title, fontdict)
 
@@ -34,12 +35,12 @@ for tick in ax.get_yticklabels():
     tick.set(**tick_font)
 
 legend_font = {'family': 'serif', 'size': 12, 'weight': 'regular'}
-ax.legend(prop=legend_font)
+# ax.legend(prop=legend_font)
 
 # Display the plot
 plt.grid(True)
 plt.tight_layout()
 
-# plt.savefig(title+'.pdf', format='pdf', bbox_inches='tight')
-# plt.savefig(title+'.png', format='png', bbox_inches='tight')
+plt.savefig(title+'0.pdf', format='pdf', bbox_inches='tight')
+plt.savefig(title+'0.png', format='png', bbox_inches='tight')
 plt.show()

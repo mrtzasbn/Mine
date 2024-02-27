@@ -53,6 +53,11 @@ for i in ax:
 ax1.grid(True)
 ax2.grid(True)
 
+a = 14
+b = 16
+ax1.set_xlim(a, b)
+ax2.set_xlim(a, b)
+
 plt.tight_layout()
 # Save and display the plot
 # plt.savefig(title + '.Tc.pdf', format='pdf', bbox_inches='tight')
