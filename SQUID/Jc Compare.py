@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 files = [
-    (r"D:\MyData\CERN\R192-5\SQUID\JcData.csv", "R192-5, Interlayer: Ta, Stiochiometric"),
+    # (r"D:\MyData\CERN\R192-5\SQUID\JcData.csv", "R192-5, Interlayer: Ta, Stiochiometric"),
     (r"D:\MyData\CERN\R183-5\SQUID\JcData.csv", "R183-5, Interlayer: None, Stiochiometric"),
     (r"D:\MyData\CERN\R173-5\SQUID\JcData.csv", "R173-5, Interlayer: Nb, 27%Sn"),
-    (r"D:\MyData\CERN\R168-5\SQUID\JcData.csv", "R168-5, Interlayer: Ta, 27%Sn"),
-    (r"D:\MyData\CERN\R94-4\SQUID\JcData.csv", "R94-4, Interlayer: Ta, Stiochiometric")
+    # (r"D:\MyData\CERN\R168-5\SQUID\JcData.csv", "R168-5, Interlayer: Ta, 27%Sn"),
+    # (r"D:\MyData\CERN\R94-4\SQUID\JcData.csv", "R94-4, Interlayer: Ta, Stiochiometric")
 ]
 
 title = "Jc"

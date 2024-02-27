@@ -34,7 +34,7 @@ def groupby_squid_jc(file_path, coefficient, interval_start, interval_end, excep
 
 # Data directory
 # List of file paths and legend labels
-file = r"D:\MyData\CERN\R168-5\SQUID\M(H)_loop_168_5_5K_WholeLoop.dc.dat"
+file = r"D:\MyData\CERN\R183-5\SQUID\M(H)_loop_183_5_5K_WholeLoop.dc.dat"
 
 
 # Input sample dimension
