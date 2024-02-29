@@ -56,10 +56,10 @@ for i, df_chunk in enumerate(dfs):
 # ax.plot(df1["Field (Oe)"]/10, df1[str]-df2[str], label="ac 1 - ac 2")
 # ax.plot(df1["Field (Oe)"]/10, df1[str]-df3[str], label = "ac 1 - ac 3")
 # ax.plot(df1["Field (Oe)"]/10, df2[str]-df3[str], label = "ac 2 - ac 3")
-f = 500
-print((df1.loc[df1["Field (Oe)"] == f, str].values[0])-(df2.loc[df2["Field (Oe)"] == f, str].values[0]))
-print((df1.loc[df1["Field (Oe)"] == f, str].values[0])-(df3.loc[df3["Field (Oe)"] == f, str].values[0]))
-print((df2.loc[df2["Field (Oe)"] == f, str].values[0])-(df3.loc[df3["Field (Oe)"] == f, str].values[0]))
+# f = 500
+# print((df1.loc[df1["Field (Oe)"] == f, str].values[0])-(df2.loc[df2["Field (Oe)"] == f, str].values[0]))
+# print((df1.loc[df1["Field (Oe)"] == f, str].values[0])-(df3.loc[df3["Field (Oe)"] == f, str].values[0]))
+# print((df2.loc[df2["Field (Oe)"] == f, str].values[0])-(df3.loc[df3["Field (Oe)"] == f, str].values[0]))
 
 
 # Set labels and title
@@ -86,4 +86,4 @@ plt.tight_layout()
 # plt.savefig(file.split("\\")[-1] + '1.png', format='png', bbox_inches='tight')
 # plt.savefig(title + '.pdf', format='pdf', bbox_inches='tight')
 # plt.savefig(title + '.png', format='png', bbox_inches='tight')
-# plt.show()
+plt.show()
