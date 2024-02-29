@@ -1,0 +1,12 @@
+﻿1			;B_stern Faktor
+1.0		;Entmagnetisierungsfaktor (nur fuer Mrev); Achtung: Auswirkung auf B wenn ungleich 1
+0			;Winkel zur c-Achse / 1000: Winkel aus Messdaten
+0.05		;Feld-Overshoot Bereich in Tesla (für H*)
+0			;Probenstabzug Modus: 0..nein, 1..y = a tanh(bx) + cx, 2..para and ortho (only VSM_2k)
+-1.41196e-005
+7.36937
+1.4753e-005
+-5.29067e-006
+343.271
+2.72624e-006
+D:\MyData\Codes\Mine\Programm\Mrevtemp.dat			;Outputdatei u_0 Mrev

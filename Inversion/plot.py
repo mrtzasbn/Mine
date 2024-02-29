@@ -32,7 +32,7 @@ samples=[]
 
 sample={
     'fil':"coarse_30_30_50_5K",
-    'path':"D:/Data/Inversion Data/R192-5/",          
+    'path':"D:/Inversion Data/Nb3Sn/R19205/",          
        }    
 samples.append(sample)
 
@@ -93,8 +93,8 @@ for sample in samples:
     # ax.text(80,94,'1 mm', horizontalalignment='center', verticalalignment='center', color='w', size=18)
     ax.set_aspect(shape[1]/shape[0])
     plt.tight_layout()
-    # fig.savefig(path+fil+'_J.pdf', dpi=300, bbox_inches = "tight")
-    # fig.savefig(path+fil+'_J.png', dpi=300, bbox_inches = "tight")
+    fig.savefig(path+fil+'_J.pdf', dpi=300, bbox_inches = "tight")
+    fig.savefig(path+fil+'_J.png', dpi=300, bbox_inches = "tight")
     plt.show()
 
 

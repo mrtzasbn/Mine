@@ -17,13 +17,13 @@ def linear(x, a, b):
 
 
 # Provide the file path
-file = r'D:\MyData\CERN\R192-5\SHMP\hc1_upper_edge_fine_5K_infield_ramp.dat'
+file = r'D:\MyData\CERN\R192-5\SHMP\hc1_coarse_30_30_50_5K.dat'
 
 # Read the data from the file, skipping lines starting with '#'
 hall_constant = hall_constant_data(file)
 
 # Define a list of intervals based on 'Field(T)' values
-intervals = [(0, 0.1)]  # Define your desired intervals here
+intervals = [(0, 0.3), (0.4, 1.5)]  # Define your desired intervals here
 
 
 

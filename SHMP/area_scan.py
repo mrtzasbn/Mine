@@ -23,22 +23,22 @@ rc("font", **font)
 # k, d = [1, 0]
 
 filetoread = (
-    "D:/MyData/CERN/R192-5/SHMP/upper_edge_fine_5K_infield_ramp_50mT.dat"
+    "D:/MyData/CERN/R192-5/SHMP/coarse_30_30_50_5K.dat"
 )
-title = "The remnant field profile at 5 K\nwith a spatial resolution of 10 μm"
+title = "The remnant field profile at 5 K\nwith a spatial resolution of 30 μm"
 
 # V = Hall Voltage
 # S = Strain Gauge
 x, y, z, V, S, T, t = iHall(filetoread)
 
 
-X, Y, Z = gridData(x, y, V)
+X, Y, Z = gridData(x, y, -V)
 
 
 X = X * 1e-3  # *1.38
 Y = Y * 1e-3  # *1.38
 # Z = ((Z))
-Z = (Z-0.0000804) * (42.18)
+Z = (Z-0.0001977) * (44)
 
 
 x_min = np.amin(X)
@@ -81,8 +81,8 @@ cax = ax.imshow(
     interpolation="None",
     aspect=1.00,
     cmap="viridis",
-    vmin=-5,
-    vmax=150
+    # vmin=-5,
+    # vmax=150
 )
 # plt.axhline(y=2.09)
 plt.axhline(y=2.09, color='red', linestyle='--')
@@ -120,7 +120,7 @@ ax.set_ylim([y_min, y_max])
 
 ax.set_xlabel(r'X (mm)', fontdict)
 ax.set_ylabel(r'Y (mm)', fontdict)
-# ax.axis('off')
+ax.axis('off')
 tick_font = {"family": "serif", "size": 16, "weight": "regular"}
 for tick in ax.get_xticklabels():
     tick.set(**tick_font)
@@ -136,8 +136,8 @@ file_name_to_save = filetoread.split("/")[-1][:-4]
 # file_name_to_save = file_name_to_save[-1][:-4]
 
 ax.set_title(file_name_to_save, fontdict)
-plt.savefig(file_name_to_save+'scaled.pdf', format='pdf', bbox_inches='tight')
-plt.savefig(file_name_to_save+'scaled.png', format='png', bbox_inches='tight')
+plt.savefig(file_name_to_save+'.pdf', format='pdf', bbox_inches='tight')
+plt.savefig(file_name_to_save+'.png', format='png', bbox_inches='tight')
 
 
 plt.show()

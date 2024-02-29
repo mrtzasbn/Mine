@@ -15,8 +15,8 @@ def read_squid_data(filename):
 def groupby_squid_jc(file_path, coefficient, interval_start, interval_end, exception=70000):
     # Read SQUID data and select relevant columns
     df = read_squid_data(file_path).loc[:, ['Field (Oe)', 'Long Moment (emu)']]
-    # df["Field (Oe)"] = -df["Field (Oe)"]
-    # df['Long Moment (emu)'] = -df['Long Moment (emu)']
+    df["Field (Oe)"] = -df["Field (Oe)"]
+    df['Long Moment (emu)'] = -df['Long Moment (emu)']
     if exception is None:
         df = df[df["Field (Oe)"]]
     else:
@@ -54,4 +54,4 @@ result_df = groupby_squid_jc(file, coefficient, interval_start, interval_end)
 # to_save = file.split('\\')[:-1]
 # to_save = "\\".join(to_save)
 
-result_df.to_csv(f"D:\MyCodes\Mine\JcData{title}.csv", index=False)
+result_df.to_csv(f"D:\MyData\Codes\Mine\JcData{title}.csv", index=False)

@@ -1,0 +1,15 @@
+1.37e-3		;Seitenlaenge der Probe
+1.29e-3		;Seitenlaenge der Probe
+0.56e-3	;Hoehe der Probe (// H)
+100		;min. Anzahl Stuetzstellen
+0				;max. Fehler in B*; 0 ... verwende min. Anzahl Stuetzstellen (nur Bulk)
+0.25			;Schrittweite Ausgabe < 1 T
+0.25			;Schrittweite Ausgabe > 1 T
+1				;Interpolation: 0/1 ... spline/linear
+0				;Modus: 0/1 ... bulk/film
+1				;Fileformat: 0/1/2/3 ... VSM/SQUID/plain/VSM-2komp
+0				;Zweige: 0/1/2/3/4 ....Alles/1-2/2-3/3-4/4-5
+0				;0/1/2 .. Normalmode (mi >> mrev) / Beginne mit Symmetrisierung von m(Ha) / Beginne mit mrev(B0) (mi ~ mrev)
+D:\MyData\Codes\Mine\Programm\01.dat		;Inputdatei
+D:\MyData\Codes\Mine\Programm\Jc5K.dat		;Outputdatei
+1		;Skalierung von m

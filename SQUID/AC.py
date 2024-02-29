@@ -14,7 +14,7 @@ def read_squid_data(filename):
 
 
 # List of file paths and legend labels
-file = r"D:\MyData\CERN\R94-4\SQUID\AC-5K_Field_R94-5_High.ac.dat"
+file = r"D:\MyData\CERN\R94-4\SQUID\AC Modified\AC-5K_Field_R94-5_High_Modified02.ac.dat"
 title= "Nb$_3$Sn Thin Film, Sample 173-5, Low Field"
 
 df = read_squid_data(file).loc[:, ['Field (Oe)', "m' (emu)", 'm" (emu)', "Regression Fit"]]
