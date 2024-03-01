@@ -6,21 +6,23 @@ import matplotlib.pyplot as plt
 df_no_w = pd.read_csv(r"D:\MyData\Codes\Mine\Ac_No_Waiting.csv")
 df_no_w.set_index('Field', inplace=True)
 df_no_w = df_no_w.transpose()
-
+print(df_no_w)
 df_w = pd.read_csv(r"D:\MyData\Codes\Mine\Ac_Waiting.csv")
 df_w.set_index('Field', inplace=True)
 df_w = df_w.transpose()
-
-
+print(df_w)
+df_w_plus = pd.read_csv(r"D:\MyData\Codes\Mine\Ac_WaitingPlus.csv")
+df_w_plus.set_index('Field', inplace=True)
+df_w_plus = df_w_plus.transpose()
+print(df_w_plus)
 # Plot
 plt.figure(figsize=(10, 6))
-plt.plot(df_no_w.index, df_no_w[500], marker='o', label='500_Waiting')
+plt.plot(df_no_w.index, df_no_w[500], marker='o', label='500_No_Waiting')
+plt.plot(df_w.index, df_w[500], marker='s', label='500_Waiting')
 
-plt.plot(df_w.index, df_w[500], marker='s', label='500_No_Waiting')
-
-plt.plot(df_no_w.index, df_no_w[1000], marker='o', label='1000_Waiting')
-
-plt.plot(df_w.index, df_w[1000], marker='s', label='1000_No_Waiting')
+plt.plot(df_no_w.index, df_no_w[1000], marker='o', label='1000_No_Waiting')
+plt.plot(df_w.index, df_w[1000], marker='s', label='1000_Waiting')
+plt.plot(df_w_plus.index, df_w_plus[1000], marker='*', label='1000_Waiting+')
 
 
 

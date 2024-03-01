@@ -33,14 +33,14 @@ def extract_chunks(df):
     return list(chunk_data.values())
 
 # List of file paths and legend labels
-file = r"D:\MyData\CERN\R94-4\SQUID\AC Modified\AC-5K_Field_R94-5_High_Modified01.ac.dat"
+file = r"D:\MyData\CERN\R94-4\SQUID\AC Modified\AC-5K_Field_R94-5_High_Modified01_Frequency.ac.dat"
 file02 = r"D:\MyData\CERN\R94-4\SQUID\AC-5K_Field_R94-5_High.ac.dat"
-file03 = r"D:\MyData\CERN\R94-4\SQUID\AC Modified 02\AC-5K_Field_R94-5_High_Modified01.ac.dat"
+file03 = r"D:\MyData\CERN\R94-4\SQUID\AC Modified 02\AC-5K_Field_R94-5_High_Modified01_Frequency.ac.dat"
 title= "Sample 94-4"
 
-df = read_squid_data(file).loc[:, ['Field (Oe)', "m' (emu)", 'm" (emu)', "Regression Fit"]]
-df2 = read_squid_data(file02).loc[:, ['Field (Oe)', "m' (emu)", 'm" (emu)', "Regression Fit"]]
-df3 = read_squid_data(file03).loc[:, ['Field (Oe)', "m' (emu)", 'm" (emu)', "Regression Fit"]]
+df = read_squid_data(file).loc[:, ['Field (Oe)', "m' (emu)", 'm" (emu)', "Regression Fit", "Time"]]
+df2 = read_squid_data(file02).loc[:, ['Field (Oe)', "m' (emu)", 'm" (emu)', "Regression Fit", "Time"]]
+df3 = read_squid_data(file03).loc[:, ['Field (Oe)', "m' (emu)", 'm" (emu)', "Regression Fit", "Time"]]
 
 # str = "m' (emu)"
 str = 'm" (emu)'
@@ -51,22 +51,22 @@ dfs = extract_chunks(df)
 fig, ax = plt.subplots(figsize=(10, 8))
 
 for i, df_chunk in enumerate(dfs):
-    df_chunk = df_chunk[df_chunk["Regression Fit"] > 9.9985E-1]
-    ax.plot(df_chunk['Field (Oe)']/10, df_chunk[str], label=f"ac_w {i+1}", marker="+")
+    # df_chunk = df_chunk[df_chunk["Regression Fit"] > 9.9985E-1]
+    ax.plot(df_chunk['Field (Oe)']/10, df_chunk[str], label=f"ac_fr_w {i+1}", marker="+")
 
 
 
 dfs_w = extract_chunks(df2)
 for i, df_chunk in enumerate(dfs_w):
     df_chunk = df_chunk[df_chunk["Regression Fit"] > 9.99E-1]
-    ax.plot(df_chunk['Field (Oe)']/10, df_chunk[str], label=f"ac_nw {i+1}", marker="*")
+    ax.plot(df_chunk['Field (Oe)']/10, df_chunk[str], label=f"ac {i+1}", marker="*")
 
 
 
 dfs_w_ = extract_chunks(df3)
 for i, df_chunk in enumerate(dfs_w_):
     df_chunk = df_chunk[df_chunk["Regression Fit"] > 9.99E-1]
-    ax.scatter(df_chunk['Field (Oe)']/10, df_chunk[str], label=f"ac_nw+ {i+1}", marker="o", s=100)
+    ax.scatter(df_chunk['Field (Oe)']/10, df_chunk[str], label=f"ac_fr_w+ {i+1}", marker="o", s=100)
 
 
 
@@ -105,6 +105,6 @@ ax.grid(True)
 plt.tight_layout()
 # plt.savefig(file.split("\\")[-1] + '1.pdf', format='pdf', bbox_inches='tight')
 # plt.savefig(file.split("\\")[-1] + '1.png', format='png', bbox_inches='tight')
-plt.savefig(title + 'com_w.pdf', format='pdf', bbox_inches='tight')
-plt.savefig(title + 'com_w.png', format='png', bbox_inches='tight')
+plt.savefig(title + '+com_w.pdf', format='pdf', bbox_inches='tight')
+plt.savefig(title + '+com_w.png', format='png', bbox_inches='tight')
 plt.show()
