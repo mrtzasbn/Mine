@@ -21,26 +21,32 @@ def tc_data(file_path):
     tc = read_squid_data(file_path).loc[:, ["Temperature (K)", "m' (emu)", 'm" (emu)']]
     return tc
 
-file = r"D:\MyData\CERN\R94-4\SQUID\Tc_0T.ac.dat"
-# title = "T$_c$ vs Field, R94-4, First deviation from Linear in Dissipation, 7T"
-title = "T$_c$ vs Field, R94-4, Intersection of Fitting, 0T"
+# str = "m' (emu)"
+str = 'm" (emu)'
+
+
+file = r"D:\MyData\CERN\R86-5\Tc_4T.ac.dat"
+title = "T$_c$ vs Field, R86-5, First deviation from Linear in Dissipation, 4T"
+# title = "T$_c$ vs Field, R94-4, Intersection of Fitting, 1T"
+# title = "T$_c$ vs Field, R86-5"
+
+
 intervals = [
     # (16.9, 17.5),
     # (13, 14.5),
-    (14.88, 15.22),
-    (15.6, 18),
+    (12.28, 12.62),
+    (13.18, 15),
     
 ]
 
 df = tc_data(file)
-
 results = []
 for interval, (start, end) in enumerate(intervals):
     # Mask the data based on the interval
     masked_data = df[(df["Temperature (K)"] >= start) & (df["Temperature (K)"] <= end)]
 
     x_interval = masked_data["Temperature (K)"]
-    y_interval = masked_data["m' (emu)"]
+    y_interval = masked_data[str]
 
     params, _ = curve_fit(linear, x_interval, y_interval)
     # Append the results to the list as a dictionary
@@ -66,7 +72,7 @@ fig, ax = plt.subplots(figsize=(10, 8))
 
 ax.scatter(
     df["Temperature (K)"],
-    df["m' (emu)"],
+    df[str],
     marker="o",
     color="black",
     label="Exp. Data"
@@ -93,7 +99,7 @@ for point in intersection_points:
 fontdict = {'fontsize': 14, 'fontweight': 'regular', 'fontfamily': 'serif'}
 legend_font = {'family': 'serif', 'size': 12, 'weight': 'regular'}
 ax.set_xlabel("Temperature (K)", fontdict)
-ax.set_ylabel("m' (emu)", fontdict)
+ax.set_ylabel(str, fontdict)
 tick_font = {'family': 'serif', 'size': 12, 'weight': 'regular'}
 for tick in ax.get_xticklabels():
     tick.set(**tick_font)
@@ -105,8 +111,8 @@ ax.legend(prop=legend_font)
 
 ax.set_title(title, fontdict)
 
-plt.xlim(13, 18.1)
-plt.ylim(df["m' (emu)"].min()+(df["m' (emu)"].min())/10, df["m' (emu)"].max()-(df["m' (emu)"].min())/10)
+# plt.xlim(13, 18.1)
+# plt.ylim(df["m' (emu)"].min()+(df["m' (emu)"].min())/10, df["m' (emu)"].max()-(df["m' (emu)"].min())/10)
 # plt.ylim(df['m" (emu)'].min()+(df['m" (emu)'].min())/10, df['m" (emu)'].max()-(df['m" (emu)'].min())/10)
 plt.grid(True)
 

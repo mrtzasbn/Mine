@@ -1,5 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import mpl_toolkits.axes_grid1.inset_locator as mpl_il
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 
 # Function to read SQUID data and create a DataFrame
@@ -14,8 +16,8 @@ def read_squid_data(filename):
 
 # List of file paths and legend labels
 file = [
-    (r"D:\MyData\CERN\R94-4\SQUID\M(H)_loop_94_4_5K_WholeLoop.dc.dat", "5K"),
-    (r"D:\MyData\CERN\R94-4\SQUID\M(H)_loop_94_4_5K_Miessner.dc.dat", "Meissner"),
+    (r"D:\MyData\CERN\R86-5\M(H)_loop_86_5_5K_WholeLoop.dc.dat", "5K"),
+    (r"D:\MyData\CERN\R86-5\M(H)_loop_86_5_5K_Miessner.dc.dat", "Meissner"),
     # (r"D:\MyData\CERN\R168-5\SQUID\M(H)_loop_168_5_5K_WholeLoop.dc.dat", "R168-5"),
     # (r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_5K_WholeLoop.dc.dat", "R173-5"),
     
@@ -25,7 +27,7 @@ file = [
 
 
 
-title = "Magnetization of Nb$_3$Sn, R94-4, Ta"
+title = "Magnetization of Nb$_3$Sn, R86-5, Ta"
 
 
 # Interval for x-axis (Field values)
@@ -55,8 +57,30 @@ for file_name, legend_label in file:
 
 
 
-# Indication line for specific situations 
-# plt.axvline(x=400/10000, color='red', linestyle='--')
+###################################################################
+# ax_inset = mpl_il.inset_axes(ax, width="30%", height="20%", loc='upper left')
+# for file_name, legend_label in file:
+#     # Read SQUID data and select relevant columns
+#     df = read_squid_data(file_name).loc[:, ['Field (Oe)', 'Long Moment (emu)', "Long Algorithm"]]
+#     ax_inset.plot(df['Field (Oe)']*1E-1, df['Long Moment (emu)'], marker = 'o', color='red')
+# ax_inset.set_xlabel('Field (mT)')
+# ax_inset.set_ylabel('Long Moment (emu)', color='black')
+# # ax_inset.tick_params(axis='y', labelcolor='green')
+# ax_inset.yaxis.set_label_position('right')
+# ax_inset.tick_params(axis='y', labelcolor='black')
+# ax_inset.yaxis.tick_right()
+# # ax_inset.yaxis.set_ticks_position('both')
+# ax_inset.grid(True)
+# # ax_inset.legend()
+# inset_x_axis_start = -6000
+# inset_x_axis_end = 6000
+# inset_y_axis_start = 0.28
+# inset_y_axis_end = 0.38
+
+# ax_inset.set_xlim(inset_x_axis_start*1E-1, inset_x_axis_end*1E-1)
+# ax_inset.set_ylim(inset_y_axis_start, inset_y_axis_end)
+
+######################################################################
 
 
 # Customize labels, titles, fonts, and legend

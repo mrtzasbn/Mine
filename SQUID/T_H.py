@@ -13,11 +13,11 @@ def linear(x, a, b):
 main_colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'orange']
 
 files = [
-    (r"D:\MyData\CERN\R192-5\SQUID\Hc2_T.csv", "R192-5, Interlayer: Ta, Stiochiometric"),
-    (r"D:\MyData\CERN\R183-5\SQUID\Hc2_T.csv", "R183-5, Interlayer: None, Stiochiometric"),
-    (r"D:\MyData\CERN\R173-5\SQUID\Hc2_T.csv", "R173-5, Interlayer: Nb, 27%Sn"),
-    (r"D:\MyData\CERN\R168-5\SQUID\Hc2_T.csv", "R168-5, Interlayer: Ta, 27%Sn"),
-    (r"D:\MyData\CERN\R94-4\SQUID\Hc2_T.csv", "R94-4, Interlayer: Ta, Stiochiometric")
+    (r"D:\MyData\CERN\R86-5\Hc2_T.csv", "R192-5, Interlayer: Ta, Stiochiometric"),
+    # (r"D:\MyData\CERN\R183-5\SQUID\Hc2_T.csv", "R183-5, Interlayer: None, Stiochiometric"),
+    # (r"D:\MyData\CERN\R173-5\SQUID\Hc2_T.csv", "R173-5, Interlayer: Nb, 27%Sn"),
+    # (r"D:\MyData\CERN\R168-5\SQUID\Hc2_T.csv", "R168-5, Interlayer: Ta, 27%Sn"),
+    # (r"D:\MyData\CERN\R94-4\SQUID\Hc2_T.csv", "R94-4, Interlayer: Ta, Stiochiometric")
 ]
 
 title = "Temperature vs. Field"
@@ -87,6 +87,6 @@ ax.legend(prop=legend_font)
 plt.grid(True)
 
 # Saving the plot
-plt.savefig(title+'.pdf', format='pdf', bbox_inches='tight')
-plt.savefig(title+'.png', format='png', bbox_inches='tight')
+# plt.savefig(title+'.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig(title+'.png', format='png', bbox_inches='tight')
 plt.show()

@@ -15,8 +15,8 @@ def read_squid_data(filename):
 
 
 # Parameters
-file = r"D:\MyData\CERN\R94-4\SQUID\Tc_0T.ac.dat"
-title = "T$_c$ of Nb$_3$Sn Thin Film, Sample 94-4"
+file = r"D:\MyData\CERN\R86-5\Tc_4T.ac.dat"
+title = "T$_c$ of Nb$_3$Sn Thin Film, Sample 68-5"
 
 # Read SQUID data and extract relevant columns
 df = read_squid_data(file).loc[:, ["Temperature (K)", "m' (emu)", 'm" (emu)', "m' Scan Std Dev", 'm" Scan Std Dev']]
@@ -55,8 +55,8 @@ ax2.grid(True)
 
 a = 14
 b = 16
-ax1.set_xlim(a, b)
-ax2.set_xlim(a, b)
+# ax1.set_xlim(a, b)
+# ax2.set_xlim(a, b)
 
 plt.tight_layout()
 # Save and display the plot

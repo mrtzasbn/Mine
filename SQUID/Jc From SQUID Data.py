@@ -33,19 +33,19 @@ def groupby_squid_jc(file_path, coefficient, interval_start, interval_end, excep
 # Data directory
 # List of file paths and legend labels
 file = [
-    (r"D:\MyData\CERN\R94-4\SQUID\M(H)_loop_94_4_5K_WholeLoop.dc.dat", "5K"),
+    (r"D:\MyData\CERN\R86-5\M(H)_loop_86_5_5K_WholeLoop.dc.dat", "5K"),
     # (r"D:\Data\SQUID Data\Nb3Sn ThinFilm\R81-5\Mag Loop\M(H)_loop_81_5_5K_WholeLoop.dc.dat", "6666K")
 ]
 
 
-title= "J$_c^G$ of Nb$_3$Sn Thin Film, Sample 94-4, 5K"
+title= "J$_c^G$ of Nb$_3$Sn Thin Film, Sample 86-5, 5K"
 
 # Input sample dimension
 
 
-a = 2309E-6
-b = 2428E-6  # Smaller Than "a"
-d = 2.7E-6
+a = 2497E-6
+b = 2185E-6  # Smaller Than "a"
+d = 3.19E-6
 
 coefficient = 4 / (b**2 * a * d * (1 - (b / (3 * a))))
 
@@ -77,17 +77,17 @@ for file_path, legend_label in file:
 
 
 
-    # ax.scatter(
-    #         max_field, max_jc, marker='o', s=150, color="red"
-    #         # label=f"J$_c$ $_M$$_a$$_x$ ({legend_label})"
-    # )
+    ax.scatter(
+            max_field, max_jc, marker='o', s=150, color="red"
+            # label=f"J$_c$ $_M$$_a$$_x$ ({legend_label})"
+    )
 
-    # ax.annotate(
-    #     f'J$_c^G$ $_M$$_a$$_x$: ({max_field:.2f} T, {max_jc:.2f} $\\times 10^{{{10}}}$ A/m$^2$))',
-    #     xy=(max_field, max_jc),
-    #     xytext=(max_field + 0.5, max_jc + 0.1),
-    #     fontproperties={'family': 'serif', 'size': 14, 'weight': 'regular'}
-    # )
+    ax.annotate(
+        f'J$_c^G$ $_M$$_a$$_x$: ({max_field*1E3} mT, {max_jc:.2f} $\\times 10^{{{10}}}$ A/m$^2$))',
+        xy=(max_field, max_jc),
+        xytext=(max_field + 0.5, max_jc + 0.1),
+        fontproperties={'family': 'serif', 'size': 14, 'weight': 'regular'}
+    )
 
 # Customize labels, titles, fonts, and legend
 fontdict = {'fontsize': 14, 'fontweight': 'regular', 'fontfamily': 'serif'}

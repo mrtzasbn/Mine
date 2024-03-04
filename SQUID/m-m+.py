@@ -20,10 +20,10 @@ def linear(x, a, b):
     return a * x + b
 
 # Data directory
-file = r"D:\MyData\CERN\R94-4\SQUID\M(H)_loop_94_4_11K.dc.dat"
+file = r"D:\MyData\CERN\OLD\R81-5\Mag Loop\M(H)_loop_81_5_5K_WholeLoop.dc.dat"
 # file = r"D:\MyData\CERN\R183-5\SQUID\M(H)_loop_183_5_5K_WholeLoop.dc.dat"
 
-title = "Nb$_3$Sn Thin Film, Sample 173-5, 14K"
+title = "Nb$_3$Sn Thin Film, Sample 81-5, 5K"
 
 # Constants
 phi_0 = 2.067833848E-15  # Wb
@@ -36,9 +36,13 @@ d = 2.67E-6
 
 # Interval for x-axis (Field values)
 interval_start = 0
-interval_end = 69000
+interval_end = 67000
 
 df = read_squid_data(file).loc[:, ['Field (Oe)', 'Long Moment (emu)']]
+
+# df['Field (Oe)'] = -df['Field (Oe)']
+# df['Long Moment (emu)'] = -df['Long Moment (emu)']
+
 df['Field (Oe)'] = df['Field (Oe)']*1E-4
 
 df = df[(df['Field (Oe)'] >= interval_start) & (df['Field (Oe)'] <= interval_end)]
@@ -76,22 +80,35 @@ for tick in ax.get_yticklabels():
 
 legend_font = {'family': 'serif', 'size': 12, 'weight': 'regular'}
 ax.legend(prop=legend_font, loc='lower right')
-
+plt.xlim(-0.005, 6.5)
 plt.grid(True)
 
 # Create inset of df['Field (Oe)'] vs. df['rev']
-ax_inset = mpl_il.inset_axes(ax, width="40%", height="30%", loc='upper right')
+ax_inset = mpl_il.inset_axes(ax, width="45%", height="35%", loc='upper right')
 ax_inset.plot(df['Field (Oe)'], df['rev'], marker="*", label="rev", color='green')
 ax_inset.set_xlabel("Field (T)")
 ax_inset.set_ylabel("Long Momnent (emu)", color='green')
 ax_inset.tick_params(axis='y', labelcolor='green')
+ax_inset.set_xlim(0, 6.5)
+# ax_inset.set_ylim(-0.005, 0.005)
 ax_inset.grid(True)
 ax_inset.legend()
 
-# Show both plots
-plt.tight_layout()
+# # Create inset of df['Field (Oe)'] vs. df['rev']
+# ax_inset = mpl_il.inset_axes(ax, width="30%", height="20%", loc='lower right')
+# ax_inset.plot(df['Field (Oe)'], df['irrev'], marker="*", label="irrev", color='green')
+# ax_inset.set_xlabel("Field (T)")
+# ax_inset.set_ylabel("Long Momnent (emu)", color='green')
+# ax_inset.tick_params(axis='y', labelcolor='green')
+# ax_inset.set_xlim(0, 0.5)
+# # ax_inset.set_ylim(-0.005, 0.005)
+# ax_inset.grid(True)
+# ax_inset.legend()
 
-# plt.savefig(title+'.pdf', format='pdf', bbox_inches='tight')
-# plt.savefig(title+'.png', format='png', bbox_inches='tight')
+# Show both plots
+# plt.tight_layout()
+
+# plt.savefig(title+'rev.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig(title+'rev.png', format='png', bbox_inches='tight')
 
 plt.show()
