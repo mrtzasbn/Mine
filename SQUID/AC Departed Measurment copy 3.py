@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import mpl_toolkits.axes_grid1.inset_locator as mpl_il
+import numpy as np
 
 # Function to read SQUID data and create a DataFrame
 def read_squid_data(filename):
@@ -39,16 +40,24 @@ grouped04 = df4.groupby("Field (Oe)")
 
 fig, ax = plt.subplots(figsize=(10, 8))
 
-
 for name, group in grouped:
     zero_time = group["Time"].iloc[0]  # Get the zero time for this specific group
     group["Time"] = group["Time"] - zero_time  # Modify Time for this group only
-    ax.plot(group["Time"]/60, group['m" (emu)']*1E+6, label=f'Field {int(name)/10} (mT)', marker='o', color="black")
+    ax.plot(np.log(group["Time"]/60), group['m" (emu)']*1E+6, label=f'Field {int(name)/10} (mT)', marker='o', color="black")
 
 for name02, group02 in grouped02:
     zero_time = group02["Time"].iloc[0]
     group02["Time"] = group02["Time"] - zero_time
-    ax.plot(group02["Time"]/60, group02['m" (emu)']*1E+6, label=f'Field {int(name02)/10} (mT), 10 min', marker='*')
+    ax.plot(np.log(group02["Time"]/60), group02['m" (emu)']*1E+6, label=f'Field {int(name02)/10} (mT), 10 min', marker='*')
+# for name, group in grouped:
+#     zero_time = group["Time"].iloc[0]  # Get the zero time for this specific group
+#     group["Time"] = group["Time"] - zero_time  # Modify Time for this group only
+#     ax.plot(group["Time"]/60, group['m" (emu)']*1E+6, label=f'Field {int(name)/10} (mT)', marker='o', color="black")
+
+# for name02, group02 in grouped02:
+#     zero_time = group02["Time"].iloc[0]
+#     group02["Time"] = group02["Time"] - zero_time
+#     ax.plot((group02["Time"]/60), group02['m" (emu)']*1E+6, label=f'Field {int(name02)/10} (mT), 10 min', marker='*')
 
 # for name03, group03 in grouped03:
 #     zero_time = group03["Time"].iloc[0]
@@ -102,8 +111,8 @@ for tick in ax.get_yticklabels():
 
 ax.grid(True)
 
-plt.savefig("actries" + '80mT01.pdf', format='pdf', bbox_inches='tight')
-plt.savefig("actries" + '80mT01.png', format='png', bbox_inches='tight')
+# plt.savefig("actries" + '80mT01.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig("actries" + '80mT01.png', format='png', bbox_inches='tight')
 
 plt.show()
 
