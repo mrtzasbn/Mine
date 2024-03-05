@@ -20,10 +20,10 @@ def linear(x, a, b):
     return a * x + b
 
 # Data directory
-file = r"D:\MyData\CERN\OLD\R81-5\Mag Loop\M(H)_loop_81_5_5K_WholeLoop.dc.dat"
+file = r"D:\MyData\CERN\R86-5\M(H)_loop_86_5_5K_WholeLoop.dc.dat"
 # file = r"D:\MyData\CERN\R183-5\SQUID\M(H)_loop_183_5_5K_WholeLoop.dc.dat"
 
-title = "Nb$_3$Sn Thin Film, Sample 81-5, 5K"
+title = "Nb$_3$Sn Thin Film, Sample 86-5, 5K"
 
 # Constants
 phi_0 = 2.067833848E-15  # Wb

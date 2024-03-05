@@ -110,6 +110,6 @@ plt.grid(True)
 plt.tight_layout()
 
 
-plt.savefig(title+'.pdf', format='pdf', bbox_inches='tight')
-plt.savefig(title+'.png', format='png', bbox_inches='tight')
+# plt.savefig(title+'.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig(title+'.png', format='png', bbox_inches='tight')
 plt.show()
