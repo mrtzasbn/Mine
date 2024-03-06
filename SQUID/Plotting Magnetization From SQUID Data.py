@@ -16,9 +16,9 @@ def read_squid_data(filename):
 
 # List of file paths and legend labels
 file = [
-    (r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_5K_WholeLoop.dc.dat", "5K"),
-    # (r"D:\MyData\CERN\R86-5\M(H)_loop_86_5_5K_Miessner.dc.dat", "Meissner"),
-    # (r"D:\MyData\CERN\R168-5\SQUID\M(H)_loop_168_5_5K_WholeLoop.dc.dat", "R168-5"),
+    (r"D:\MyData\CERN\R86-5\M(H)_loop_86_5_5K_Miessner.dc.dat", "Miessner"),
+    (r"D:\MyData\CERN\R86-5\AC Modified 02\AC-5K_Field_R86-5_High_ModifiedMoreAC80mT_DC.dc.dat", "1st Measurement"),
+    (r"D:\MyData\CERN\R86-5\AC Modified 02\AC-5K_Field_R86-5_High_ModifiedMoreAC80mT_DC.dc - copy.dat", "2nd Measurement"),
     # (r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_5K_WholeLoop.dc.dat", "R173-5"),
     
 ]
@@ -27,7 +27,7 @@ file = [
 
 
 
-title = "Magnetization of Nb$_3$Sn, R173-5"
+title = "Magnetization of Nb$_3$Sn, R86-5"
 
 
 # Interval for x-axis (Field values)
@@ -51,7 +51,7 @@ for file_name, legend_label in file:
         masked_data['Field (Oe)']/10000 ,
         masked_data['Long Moment (emu)'],
         # linewidth=2,
-        color= "black",
+        # color= "black",
         label=legend_label,
         # s=2
     )
