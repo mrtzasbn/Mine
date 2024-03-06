@@ -16,8 +16,8 @@ def read_squid_data(filename):
 
 # List of file paths and legend labels
 file = [
-    (r"D:\MyData\CERN\R86-5\M(H)_loop_86_5_5K_WholeLoop.dc.dat", "5K"),
-    (r"D:\MyData\CERN\R86-5\M(H)_loop_86_5_5K_Miessner.dc.dat", "Meissner"),
+    (r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_5K_WholeLoop.dc.dat", "5K"),
+    # (r"D:\MyData\CERN\R86-5\M(H)_loop_86_5_5K_Miessner.dc.dat", "Meissner"),
     # (r"D:\MyData\CERN\R168-5\SQUID\M(H)_loop_168_5_5K_WholeLoop.dc.dat", "R168-5"),
     # (r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_5K_WholeLoop.dc.dat", "R173-5"),
     
@@ -27,7 +27,7 @@ file = [
 
 
 
-title = "Magnetization of Nb$_3$Sn, R86-5, Ta"
+title = "Magnetization of Nb$_3$Sn, R173-5"
 
 
 # Interval for x-axis (Field values)
@@ -51,8 +51,9 @@ for file_name, legend_label in file:
         masked_data['Field (Oe)']/10000 ,
         masked_data['Long Moment (emu)'],
         # linewidth=2,
-        # color= "black",
-        label=legend_label
+        color= "black",
+        label=legend_label,
+        # s=2
     )
 
 
@@ -62,7 +63,7 @@ for file_name, legend_label in file:
 # for file_name, legend_label in file:
 #     # Read SQUID data and select relevant columns
 #     df = read_squid_data(file_name).loc[:, ['Field (Oe)', 'Long Moment (emu)', "Long Algorithm"]]
-#     ax_inset.plot(df['Field (Oe)']*1E-1, df['Long Moment (emu)'], marker = 'o', color='red')
+#     ax_inset.scatter(df['Field (Oe)']*1E-1, df['Long Moment (emu)'], marker = 'o', color='red', s=10)
 # ax_inset.set_xlabel('Field (mT)')
 # ax_inset.set_ylabel('Long Moment (emu)', color='black')
 # # ax_inset.tick_params(axis='y', labelcolor='green')
@@ -113,8 +114,8 @@ plt.grid(True)
 plt.tight_layout()
 
 # # Saving the plot
-# plt.savefig(title+'.pdf', format='pdf', bbox_inches='tight')
-# plt.savefig(title+'.png', format='png', bbox_inches='tight')
+plt.savefig(title+'.pdf', format='pdf', bbox_inches='tight')
+plt.savefig(title+'.png', format='png', bbox_inches='tight')
 
 # Display the plot
 plt.show()

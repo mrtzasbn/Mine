@@ -40,16 +40,25 @@ fig, ax = plt.subplots(figsize=(10, 8))
 
 # Plot 'Value' against index for each group
 for name, group in grouped:
-    max = group['m" (emu)'].max()
-    ax.plot(group.reset_index(drop=True).index + 1, group.reset_index(drop=True)['m" (emu)']/max, label=f'Field {int(name)/10} (mT)', marker = 'o', color="black")
+    
+    # min = group['m" (emu)'].min()
+    min = 0
+    max = group['m" (emu)'].max()-min
+    ax.plot(group.reset_index(drop=True).index + 1, (group.reset_index(drop=True)['m" (emu)']-min)/max, label=f'Field {int(name)/10} (mT)', marker = 'o', color="black")
 
 for name02, group02 in grouped02:
-    max = group02['m" (emu)'].max()
-    ax.plot(group02.reset_index(drop=True).index + 1, group02.reset_index(drop=True)['m" (emu)']/max, label=f'Field {int(name02)/10} (mT), 10 min', marker = '*')
+    
+    # min = group02['m" (emu)'].min()
+    min = 0
+    max = group02['m" (emu)'].max()-min
+    ax.plot(group02.reset_index(drop=True).index + 1, (group02.reset_index(drop=True)['m" (emu)']-min)/max, label=f'Field {int(name02)/10} (mT), 10 min', marker = '*')
 
 for name03, group03 in grouped03:
-    max = group03['m" (emu)'].max()
-    ax.plot(group03.reset_index(drop=True).index + 1, group03.reset_index(drop=True)['m" (emu)']/max, label=f'Field {int(name03)/10} (mT), 1 Hz', marker = '+')
+    
+    # min = group03['m" (emu)'].min()
+    min = 0
+    max = group03['m" (emu)'].max()-min
+    ax.plot(group03.reset_index(drop=True).index + 1, (group03.reset_index(drop=True)['m" (emu)']-min)/max, label=f'Field {int(name03)/10} (mT), 1 Hz', marker = '+')
 
 
 
@@ -57,7 +66,7 @@ for name03, group03 in grouped03:
 fontdict = {'fontsize': 14, 'fontweight': 'regular', 'fontfamily': 'serif'}
 legend_font = {'family': 'serif', 'size': 12, 'weight': 'regular'}
 
-ax.set_title('m" (emu) vs  AC tries', fontdict)
+ax.set_title('m" (emu) vs  AC tries, 5K', fontdict)
 ax.set_xlabel('Try', fontdict)
 # ax.set_ylabel('m" $\\times 10^{{{-6}}}$ (emu)', fontdict)
 ax.set_ylabel('m" (Normalized)', fontdict)
@@ -73,8 +82,8 @@ for tick in ax.get_yticklabels():
 
 ax.grid(True)
 
-plt.savefig("actries" + '01moretry.pdf', format='pdf', bbox_inches='tight')
-plt.savefig("actries" + '01moretry.png', format='png', bbox_inches='tight')
+plt.savefig("AC,Normalized02" + '.pdf', format='pdf', bbox_inches='tight')
+plt.savefig("AC,Normalized02" + '.png', format='png', bbox_inches='tight')
 
 plt.show()
 

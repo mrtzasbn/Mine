@@ -26,13 +26,13 @@ def read_squid_data(filename):
     squid_data_df = pd.read_csv(filename, skiprows=skiprows)
     return squid_data_df
 
-file = r"D:\MyData\CERN\R168-5\SQUID\Tc_0T.ac.dat"
+file = r"D:\MyData\CERN\R173-5\SQUID\Tc_0T.ac.dat"
 
 df = read_squid_data(file).loc[:, ["Temperature (K)", "m' (emu)", 'm" (emu)', "m' Scan Std Dev", 'm" Scan Std Dev']]
 df = df[(df['m" Scan Std Dev'] < 9.99E-7) & (df["m' Scan Std Dev"] < 9.99E-7)]
-df = df[(df["Temperature (K)"] > 14)]
+df = df[(df["Temperature (K)"] > 12)]
 
-title = "Nb$_3$Sn Thin Film, Sample R168-5"
+title = "Nb$_3$Sn Thin Film, R173-5"
 
 x = df["Temperature (K)"].values
 y = df['m" (emu)'].values
@@ -64,14 +64,14 @@ plt.annotate('FWHM: {:.2f}K'.format(fwhm), xy=(np.mean(hmx), max(y) / 2.0),
 
 plt.xlabel("Temperature (K)", fontdict)
 plt.ylabel("m' (emu)", fontdict)
-plt.title('FWHM Calculation'+title, fontdict)
+plt.title('FWHM Calculation, '+title, fontdict)
 plt.legend(prop=legend_font, loc='upper left')
 plt.xticks(fontproperties=tick_font)
 plt.yticks(fontproperties=tick_font)
 plt.grid(True)
 
 plt.legend(prop=legend_font)
-plt.savefig(title + '.pdf', format='pdf', bbox_inches='tight')
-plt.savefig(title + '.png', format='png', bbox_inches='tight')
+plt.savefig('FWHM Calculation ' + title + '.pdf', format='pdf', bbox_inches='tight')
+plt.savefig('FWHM Calculation ' + title + '.png', format='png', bbox_inches='tight')
 
 plt.show()

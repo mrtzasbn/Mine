@@ -14,8 +14,8 @@ def read_squid_data(filename):
 
 
 # List of file paths and legend labels
-file = r"D:\MyData\CERN\R86-5\AC-5K_Field_R86-5_High.ac.dat"
-title= "Nb$_3$Sn Thin Film, Sample 86-5, High Field"
+file = r"D:\MyData\CERN\R173-5\SQUID\AC-5K_Field_R173-5_High.ac.dat"
+title= "Nb$_3$Sn Thin Film, 5K, R173-5"
 
 df = read_squid_data(file).loc[:, ['Field (Oe)', "m' (emu)", 'm" (emu)', "Regression Fit"]]
 df = df[df["Regression Fit"]>9.999E-1]

@@ -21,21 +21,21 @@ def tc_data(file_path):
     tc = read_squid_data(file_path).loc[:, ["Temperature (K)", "m' (emu)", 'm" (emu)']]
     return tc
 
-# str = "m' (emu)"
-str = 'm" (emu)'
+str = "m' (emu)"
+# str = 'm" (emu)'
 
 
-file = r"D:\MyData\CERN\R86-5\Tc_4T.ac.dat"
-title = "T$_c$ vs Field, R86-5, First deviation from Linear in Dissipation, 4T"
+file = r"D:\MyData\CERN\R86-5\Tc_0T.ac.dat"
+# title = "T$_c$ vs Field, R86-5, First deviation from Linear in Dissipation, 4T"
 # title = "T$_c$ vs Field, R94-4, Intersection of Fitting, 1T"
-# title = "T$_c$ vs Field, R86-5"
+title = "T$_c$ vs Field, R86-5"
 
 
 intervals = [
     # (16.9, 17.5),
     # (13, 14.5),
-    (12.28, 12.62),
-    (13.18, 15),
+    (14.28, 14.72),
+    (15.15, 18),
     
 ]
 
@@ -111,12 +111,12 @@ ax.legend(prop=legend_font)
 
 ax.set_title(title, fontdict)
 
-# plt.xlim(13, 18.1)
-# plt.ylim(df["m' (emu)"].min()+(df["m' (emu)"].min())/10, df["m' (emu)"].max()-(df["m' (emu)"].min())/10)
+plt.xlim(13, 18.1)
+plt.ylim(df["m' (emu)"].min()+(df["m' (emu)"].min())/10, df["m' (emu)"].max()-(df["m' (emu)"].min())/10)
 # plt.ylim(df['m" (emu)'].min()+(df['m" (emu)'].min())/10, df['m" (emu)'].max()-(df['m" (emu)'].min())/10)
 plt.grid(True)
 
-plt.savefig(title + 'Fit01.TcDet.pdf', format='pdf', bbox_inches='tight')
-plt.savefig(title + 'Fit01.TcDet.png', format='png', bbox_inches='tight')
+plt.savefig(title + '.Tc.pdf', format='pdf', bbox_inches='tight')
+plt.savefig(title + '.Tc.png', format='png', bbox_inches='tight')
 
 plt.show()

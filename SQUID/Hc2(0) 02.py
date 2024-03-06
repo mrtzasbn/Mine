@@ -8,25 +8,21 @@ def linear(x, a, b):
     return a * x + b
 
 
-
-file = r"D:\MyData\CERN\R86-5\Hc2_T.csv"
+file = r"D:\MyData\CERN\R173-5\SQUID\Hc2_T.csv"
 
 # title = "R173-5, Intersection of Fitting"
-title = "R86-5, First deviation from Linear in Dissipation"
+# title = "R86-5, First deviation from Linear in Dissipation"
+title = "\u03BC$_0$H$_c$$_2$ vs T ,R173-5"
 
 fig, ax = plt.subplots(figsize=(10, 8))
 
 
 df = pd.read_csv(file)
 tc = df["T"].iloc[0]
-print(tc)
+
 df = df.drop(index=0).reset_index(drop=True)
 
 start, end = (df["T"].iloc[-1], df["T"].iloc[0])
-
-print(df["T"].iloc[0])
-print(df["T"].iloc[-1])
-
 masked_data = df[(df["T"] >= start) & (df["T"] <= end)]
 
 x_interval = masked_data["T"]
@@ -38,12 +34,10 @@ H_intercept = params[1]
 T_intercept = -H_intercept/slope
 
 
-
 # Fitting
 x_data = np.linspace(start-1, end+1, 100)
 y_fit = linear(x_data, slope, H_intercept)
     
-
 
 # WHH
 h_Whh = -0.693*slope*T_intercept
@@ -55,21 +49,19 @@ df = pd.concat([df, new_df], ignore_index=True)
 df = df.sort_values(by='T')
 
 # Main Data
-ax.scatter(
-    df["T"], df["Field"], marker="o", color="black", s=25
-    )
+ax.scatter(df["T"], df["Field"], marker="o", color="black", s=25)
 # Plot the fit ###############################
 ax.plot(x_data, y_fit, linestyle="--", linewidth=2)
 
-# Plotting T intercept ###############################
-ax.scatter(T_intercept, 0, color="red", s=50, zorder=3) 
-ax.annotate(
-        f'T$_{{\mathrm{{intercept}}}}$: ({T_intercept:.2f} K)',
-            xy=(T_intercept, 0),
-            xytext=(T_intercept-5, 0),
-            arrowprops=dict(facecolor='black', shrink=0.05),
-            fontproperties={'family': 'serif', 'size': 12, 'weight': 'regular'}
-    )
+# # Plotting T intercept ###############################
+# ax.scatter(T_intercept, 0, color="red", s=50, zorder=3) 
+# ax.annotate(
+#         f'T$_{{\mathrm{{intercept}}}}$: ({T_intercept:.2f} K)',
+#             xy=(T_intercept, 0),
+#             xytext=(T_intercept-5, 0),
+#             arrowprops=dict(facecolor='black', shrink=0.05),
+#             fontproperties={'family': 'serif', 'size': 12, 'weight': 'regular'}
+#     )
 # Plotting H intercept ###############################
 ax.scatter(0, H_intercept, color="blue", s=50, zorder=3)
 

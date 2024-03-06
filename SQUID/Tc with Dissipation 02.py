@@ -12,19 +12,14 @@ def read_squid_data(filename):
     return squid_data_df
 
 
-
-
 # Parameters
-file = r"D:\MyData\CERN\R192-5\SQUID\Tc_ZFC.ac.dat"
-title = "Sample 192-5"
+file = r"D:\MyData\CERN\R173-5\SQUID\Tc_0T.ac.dat"
+title = "Susceptibility of Nb$_3$Sn Thin Film, Sample R173-5"
 
 # Read SQUID data and extract relevant columns
 df = read_squid_data(file).loc[:, ["Temperature (K)", "m' (emu)", 'm" (emu)', "m' Scan Std Dev", 'm" Scan Std Dev']]
-df = df[(
-        df['m" Scan Std Dev']<9.995E-7) 
-        & (df["m' Scan Std Dev"]<9.995E-6)
-        ]
-# df = df[(df["Temperature (K)"]>14)]
+df = df[(df['m" Scan Std Dev']<9.995E-7) & (df["m' Scan Std Dev"]<9.995E-6)]
+
 
 # Create subplots
 fig, ax = plt.subplots(figsize=(10, 8))
@@ -59,12 +54,16 @@ lines, labels = ax.get_legend_handles_labels()
 lines2, labels2 = ax2.get_legend_handles_labels()
 ax.legend(lines + lines2, labels + labels2, prop=legend_font, loc='upper left')
 
-ax.set_xlim(14, 17)
+a = 14
+b = 16
+# ax1.set_xlim(a, b)
+# ax2.set_xlim(a, b)
 
 plt.tight_layout()
+
 # Save and display the plot
-plt.savefig(title + '.Tc.pdf', format='pdf', bbox_inches='tight')
-plt.savefig(title + '.Tc.png', format='png', bbox_inches='tight')
+plt.savefig(title + '02.Tc.pdf', format='pdf', bbox_inches='tight')
+plt.savefig(title + '02.Tc.png', format='png', bbox_inches='tight')
 
 # df.to_csv('title.csv', index=False)
 plt.show()
