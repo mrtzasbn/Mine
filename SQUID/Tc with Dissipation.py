@@ -12,8 +12,8 @@ def read_squid_data(filename):
     return squid_data_df
 
 # Parameters
-file = r"D:\MyData\CERN\R173-5\SQUID\Tc_0T.ac.dat"
-title = "Susceptibility of Nb$_3$Sn Thin Film, Sample R173-5"
+file = r"D:\MyData\CERN\R192-5\SQUID\Tc_ZFC.ac.dat"
+title = "Susceptibility of Nb$_3$Sn Thin Film, Sample 192-5"
 
 # Read SQUID data and extract relevant columns
 df = read_squid_data(file).loc[:, ["Temperature (K)", "m' (emu)", 'm" (emu)', "m' Scan Std Dev", 'm" Scan Std Dev']]
@@ -57,7 +57,7 @@ b = 16
 
 plt.tight_layout()
 # Save and display the plot
-plt.savefig(title + '.Tc.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig(title + '.Tc.pdf', format='pdf', bbox_inches='tight')
 plt.savefig(title + '.Tc.png', format='png', bbox_inches='tight')
 
 # df.to_csv('title.csv', index=False)

@@ -18,24 +18,25 @@ def linear(x, a, b):
     return a * x + b
 
 def tc_data(file_path):
-    tc = read_squid_data(file_path).loc[:, ["Temperature (K)", "m' (emu)", 'm" (emu)']]
+    tc = read_squid_data(file_path).loc[:, ["Temperature (K)", "m' (emu)", 'm" (emu)', 'm" Scan Std Dev', "m' Scan Std Dev"]]
     return tc
 
 str = "m' (emu)"
 # str = 'm" (emu)'
 
 
-file = r"D:\MyData\CERN\R86-5\Tc_0T.ac.dat"
+file = r"D:\MyData\CERN\R192-5\SQUID\Tc_ZFC.ac.dat"
+
 # title = "T$_c$ vs Field, R86-5, First deviation from Linear in Dissipation, 4T"
 # title = "T$_c$ vs Field, R94-4, Intersection of Fitting, 1T"
-title = "T$_c$ vs Field, R86-5"
+title = "T$_c$, R192-5"
 
 
 intervals = [
     # (16.9, 17.5),
     # (13, 14.5),
-    (14.28, 14.72),
-    (15.15, 18),
+    (15.57, 15.92),
+    (16.5, 18),
     
 ]
 
@@ -69,7 +70,7 @@ for point in intersection_points:
 
 # Plot the original data
 fig, ax = plt.subplots(figsize=(10, 8))
-
+df = df[(df['m" Scan Std Dev']<9.995E-7) & (df["m' Scan Std Dev"]<9.995E-6)]
 ax.scatter(
     df["Temperature (K)"],
     df[str],
@@ -116,7 +117,7 @@ plt.ylim(df["m' (emu)"].min()+(df["m' (emu)"].min())/10, df["m' (emu)"].max()-(d
 # plt.ylim(df['m" (emu)'].min()+(df['m" (emu)'].min())/10, df['m" (emu)'].max()-(df['m" (emu)'].min())/10)
 plt.grid(True)
 
-plt.savefig(title + '.Tc.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig(title + '.Tc.pdf', format='pdf', bbox_inches='tight')
 plt.savefig(title + '.Tc.png', format='png', bbox_inches='tight')
 
 plt.show()

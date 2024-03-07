@@ -8,18 +8,18 @@ def linear(x, a, b):
     return a * x + b
 
 
-file = r"D:\MyData\CERN\R173-5\SQUID\Hc2_T.csv"
+file = r"D:\MyData\CERN\R192-5\SQUID\Hc2_T.csv"
 
 # title = "R173-5, Intersection of Fitting"
 # title = "R86-5, First deviation from Linear in Dissipation"
-title = "\u03BC$_0$H$_c$$_2$ vs T ,R173-5"
+title = "\u03BC$_0$H$_c$$_2$ vs T, R192-5"
 
 fig, ax = plt.subplots(figsize=(10, 8))
 
 
 df = pd.read_csv(file)
 tc = df["T"].iloc[0]
-
+print(tc)
 df = df.drop(index=0).reset_index(drop=True)
 
 start, end = (df["T"].iloc[-1], df["T"].iloc[0])
@@ -112,6 +112,6 @@ for tick in ax.get_yticklabels():
 plt.grid(True)
 
 # Saving the plot
-plt.savefig(title+'.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig(title+'.pdf', format='pdf', bbox_inches='tight')
 plt.savefig(title+'.png', format='png', bbox_inches='tight')
 plt.show()
