@@ -37,13 +37,15 @@ params, _ = curve_fit(linear, x_data, y_data)
 print(f"{params[0]:.4e}")
 print(f"{params[1]:.4e}")
 
+df['delta'] = df['Long Moment (emu)'] - linear(df['Field (Oe)'], params[0], params[1])
     
-
+print(df)
 fig, ax = plt.subplots(figsize=(10, 8))
 ######################################################################
 # Plotting Jc Field within the specified interval
 ax.scatter(df['Field (Oe)']*1E3 , df['Long Moment (emu)'], color= "black")
 ax.plot(df['Field (Oe)']*1E3, linear(df['Field (Oe)'], params[0], params[1]), color="red")
+ax.plot(df['Field (Oe)']*1E3, df['delta'], color="blue")
 ######################################################################
 
 
@@ -68,7 +70,7 @@ x_axis_end = 8000
 y_axis_start = df['Long Moment (emu)'].min() + 0.05*(df['Long Moment (emu)'].min())
 
 # plt.xlim(x_axis_start / 10000, x_axis_end / 10000)
-plt.ylim(y_axis_start, 0.00002)
+# plt.ylim(y_axis_start, 0.00002)
 
 # ax.set_title(title, fontdict)
 
