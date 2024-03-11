@@ -26,13 +26,13 @@ def read_squid_data(filename):
     squid_data_df = pd.read_csv(filename, skiprows=skiprows)
     return squid_data_df
 
-file = r"D:\MyData\CERN\R192-5\SQUID\Tc_ZFC.ac.dat"
+file = r"D:\MyData\CERN\R169-5\SQUID\Tc_0T.ac.dat"
 
 df = read_squid_data(file).loc[:, ["Temperature (K)", "m' (emu)", 'm" (emu)', "m' Scan Std Dev", 'm" Scan Std Dev']]
 df = df[(df['m" Scan Std Dev'] < 9.99E-7) & (df["m' Scan Std Dev"] < 9.99E-7)]
 df = df[(df["Temperature (K)"] > 12)]
 
-title = "Nb$_3$Sn Thin Film, R192-5"
+title = "Nb$_3$Sn Thin Film, R169-5"
 
 x = df["Temperature (K)"].values
 y = df['m" (emu)'].values
@@ -71,7 +71,7 @@ plt.yticks(fontproperties=tick_font)
 plt.grid(True)
 
 plt.legend(prop=legend_font)
-# plt.savefig('FWHM Calculation ' + title + '.pdf', format='pdf', bbox_inches='tight')
+plt.savefig('FWHM Calculation ' + title + '.pdf', format='pdf', bbox_inches='tight')
 plt.savefig('FWHM Calculation ' + title + '.png', format='png', bbox_inches='tight')
 
 plt.show()

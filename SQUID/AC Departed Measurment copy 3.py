@@ -16,10 +16,10 @@ def read_squid_data(filename):
 
 
 # List of file paths and legend labels
-file =   r"D:\MyData\CERN\R86-5\AC Modified\80mT\AC-5K_Field_R86-5_High_ModifiedMoreAC80mT.ac.dat"
-file02 = r"D:\MyData\CERN\R86-5\AC Modified\80mT\AC-5K_Field_R86-5_High_ModifiedMoreAC10min80mT.ac.dat"
-file03 = r"D:\MyData\CERN\R86-5\AC Modified\80mT\AC-5K_Field_R86-5_High_ModifiedMoreAC1Hz80mT.ac.dat"
-file04 = r"D:\MyData\CERN\R86-5\AC Modified\30mT\AC-5K_Field_R86-5_High_ModifiedMoreAC30mT.ac.dat"
+file =   r"D:\MyData\CERN\R86-5\SQUID\AC Modified\80mT\AC-5K_Field_R86-5_High_ModifiedMoreAC80mT.ac.dat"
+file02 = r"D:\MyData\CERN\R86-5\SQUID\AC Modified\80mT\AC-5K_Field_R86-5_High_ModifiedMoreAC10min80mT.ac.dat"
+file03 = r"D:\MyData\CERN\R86-5\SQUID\AC Modified\80mT\AC-5K_Field_R86-5_High_ModifiedMoreAC1Hz80mT.ac.dat"
+file04 = r"D:\MyData\CERN\R86-5\SQUID\AC Modified\30mT\AC-5K_Field_R86-5_High_ModifiedMoreAC30mT.ac.dat"
 title= "more AC Tries, 5K, R86-5"
 
 df = read_squid_data(file).loc[:, ['Field (Oe)', "m' (emu)", 'm" (emu)', "Regression Fit", "Time"]]
@@ -111,8 +111,8 @@ for tick in ax.get_yticklabels():
 
 ax.grid(True)
 
-plt.savefig(title + '.pdf', format='pdf', bbox_inches='tight')
-plt.savefig(title + '.png', format='png', bbox_inches='tight')
+# plt.savefig(title + '.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig(title + '.png', format='png', bbox_inches='tight')
 
 plt.show()
 

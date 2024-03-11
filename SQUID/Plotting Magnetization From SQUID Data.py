@@ -16,10 +16,15 @@ def read_squid_data(filename):
 
 # List of file paths and legend labels
 file = [
-    (r"D:\MyData\CERN\R192-5\SQUID\M(H)_loop_192_5_5K_WholeLoop.dc.dat", "5K"),
-    # (r"D:\MyData\CERN\R86-5\AC Modified 02\AC-5K_Field_R86-5_High_ModifiedMoreAC80mT_DC.dc.dat", "1st Measurement"),
-    # (r"D:\MyData\CERN\R86-5\AC Modified 02\AC-5K_Field_R86-5_High_ModifiedMoreAC80mT_DC.dc - copy.dat", "2nd Measurement"),
-    # (r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_5K_WholeLoop.dc.dat", "R173-5"),
+    (r"D:\MyData\CERN\R169-5\SQUID\M(H)_loop_169_5_5K_WholeLoop.dc.dat", "169"),
+    (r"D:\MyData\CERN\R86-5\SQUID\M(H)_loop_86_5_5K_WholeLoop.dc.dat", "86"),
+    (r"D:\MyData\CERN\R94-4\SQUID\M(H)_loop_94_4_5K_WholeLoop.dc.dat", "94"),
+    (r"D:\MyData\CERN\R168-5\SQUID\M(H)_loop_168_5_5K_WholeLoop.dc.dat", "168"),
+    (r"D:\MyData\CERN\R173-5\SQUID\M(H)_loop_173_5_5K_WholeLoop.dc.dat", "173"),
+    (r"D:\MyData\CERN\R183-5\SQUID\M(H)_loop_183_5_5K_WholeLoop.dc.dat", "183"),
+    (r"D:\MyData\CERN\R192-5\SQUID\M(H)_loop_192_5_5K_WholeLoop.dc.dat", "192")
+    
+
     
 ]
 
@@ -27,7 +32,7 @@ file = [
 
 
 
-title = "Magnetization of Nb$_3$Sn, R192-5"
+title = "Magnetization of Nb$_3$Sn, R169-5"
 
 
 # Interval for x-axis (Field values)
@@ -40,18 +45,18 @@ fig, ax = plt.subplots(figsize=(10, 8))
 for file_name, legend_label in file:
     # Read SQUID data and select relevant columns
     df = read_squid_data(file_name).loc[:, ['Field (Oe)', 'Long Moment (emu)', "Long Algorithm"]]
-    # max = df['Long Moment (emu)'].max()
+    max = df['Long Moment (emu)'].max()
 
 
     # Mask the data based on the interval
     masked_data = df[(df['Field (Oe)'] >= interval_start) & (df['Field (Oe)'] <= interval_end)]
 
     # Plotting Jc Field within the specified interval
-    ax.scatter(
+    ax.plot(
         masked_data['Field (Oe)']/10000 ,
         masked_data['Long Moment (emu)'],
         # linewidth=2,
-        color= "black",
+        # color= "black",
         label=legend_label,
         # s=2
     )
@@ -115,7 +120,7 @@ plt.tight_layout()
 
 # # Saving the plot
 # plt.savefig(title+'.pdf', format='pdf', bbox_inches='tight')
-plt.savefig(title+'.png', format='png', bbox_inches='tight')
+# plt.savefig(title+'.png', format='png', bbox_inches='tight')
 
 # Display the plot
 plt.show()

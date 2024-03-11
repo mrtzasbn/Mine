@@ -12,12 +12,12 @@ def read_squid_data(filename):
     return squid_data_df
 
 # Parameters
-file = r"D:\MyData\CERN\R192-5\SQUID\Tc_ZFC.ac.dat"
-title = "Susceptibility of Nb$_3$Sn Thin Film, Sample 192-5"
+file = r"D:\MyData\CERN\R169-5\SQUID\Tc_1T.ac.dat"
+title = "Susceptibility of Nb$_3$Sn Thin Film, Sample 169-5"
 
 # Read SQUID data and extract relevant columns
 df = read_squid_data(file).loc[:, ["Temperature (K)", "m' (emu)", 'm" (emu)', "m' Scan Std Dev", 'm" Scan Std Dev']]
-df = df[(df['m" Scan Std Dev']<9.99E-7) & (df["m' Scan Std Dev"]<9.99E-7)]
+# df = df[(df['m" Scan Std Dev']<9.99E-7) & (df["m' Scan Std Dev"]<9.99E-7)]
 
 
 # Create subplots
@@ -50,15 +50,15 @@ for i in ax:
 ax1.grid(True)
 ax2.grid(True)
 
-a = 14
-b = 16
+a = 7
+b = 12
 # ax1.set_xlim(a, b)
 # ax2.set_xlim(a, b)
 
 plt.tight_layout()
 # Save and display the plot
 # plt.savefig(title + '.Tc.pdf', format='pdf', bbox_inches='tight')
-plt.savefig(title + '.Tc.png', format='png', bbox_inches='tight')
+# plt.savefig(title + '.Tc.png', format='png', bbox_inches='tight')
 
 # df.to_csv('title.csv', index=False)
 plt.show()

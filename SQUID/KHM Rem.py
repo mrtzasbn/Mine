@@ -19,8 +19,8 @@ def linear(x, a, b):
     return a * x + b
 
 # Parameters
-file_path_infield = r"D:\MyData\CERN\R168-5\KHM\Nb3Sn_Thin_Film_KHM_5K_infield.dc.dat"
-file_path_rem = r"D:\MyData\CERN\R168-5\KHM\Nb3Sn_Thin_Film_KHM_5K_rem.dc.dat"
+file_path_infield = r"D:\MyData\CERN\R168-5\SQUID\KHM\Nb3Sn_Thin_Film_KHM_5K_infield.dc.dat"
+file_path_rem = r"D:\MyData\CERN\R168-5\SQUID\KHM\Nb3Sn_Thin_Film_KHM_5K_rem.dc.dat"
 title = "Nb$_3$Sn Thin Film, Sample 183-5, KHM Remnant"
 
 df_infield = read_squid_data(file_path_infield).loc[:, ['Field (Oe)', 'Long Moment (emu)']]
@@ -44,41 +44,41 @@ ax2 = ax.twinx()
 ax.scatter(df_infield['Field (Oe)']/10, df_rem['Long Moment (emu)'], color="black", label="SQUID Data")
 ax.plot(interpolated_df['Field (Oe)']/10, interpolated_df['Long Moment (emu)'], color="black")
 
-# Define interval
-interval = (0, 50)
-start, end = interval
+# # Define interval
+# interval = (0, 50)
+# start, end = interval
 
-# Mask the data based on the interval
-masked_data = interpolated_df[(interpolated_df['Field (Oe)'] >= start) & (interpolated_df['Field (Oe)'] <= end)]
-x_interval = masked_data['Field (Oe)']
-y_interval = masked_data['Long Moment (emu)']
+# # Mask the data based on the interval
+# masked_data = interpolated_df[(interpolated_df['Field (Oe)'] >= start) & (interpolated_df['Field (Oe)'] <= end)]
+# x_interval = masked_data['Field (Oe)']
+# y_interval = masked_data['Long Moment (emu)']
 
-# Fit linear model to the interval
-params, _ = curve_fit(linear, x_interval, y_interval)
+# # Fit linear model to the interval
+# params, _ = curve_fit(linear, x_interval, y_interval)
 
-# Plot the fitted line for the interval
-x_data = interpolated_df['Field (Oe)']  # Generate X values within the interval range
-y_fit = linear(x_data, params[0], params[1])
-ax.plot(x_data/10, y_fit, color="red", label="Extrapolation")
+# # Plot the fitted line for the interval
+# x_data = interpolated_df['Field (Oe)']  # Generate X values within the interval range
+# y_fit = linear(x_data, params[0], params[1])
+# ax.plot(x_data/10, y_fit, color="red", label="Extrapolation")
 
-difference = (y_fit - interpolated_df['Long Moment (emu)'])
-ax2.plot(x_data/10, difference, linestyle='--', color="blue", label="Δ")
+# difference = (y_fit - interpolated_df['Long Moment (emu)'])
+# ax2.plot(x_data/10, difference, linestyle='--', color="blue", label="Δ")
 
-# Find the index where the difference crosses the threshold value
-diff_sign = np.sign(difference.values + 0.00025)
-change_indices = np.where(diff_sign[:-1] != diff_sign[1:])[0]
-if len(change_indices) > 0:
-    first_index = change_indices[0] + 1
-    # ax2.plot(x_data[first_index]/10, difference.iloc[first_index], marker='o', markersize=8, color='red')
-else:
-    print("No sign change found.")
-plt.axvline(x=x_data[first_index]/10, color="green", linestyle='--')
-ax.annotate(
-        f'Start of Deviation: {x_data[first_index]/10:.2f} mT\n (difference = 0.00025)',
-        xy=(x_data[first_index]/10, difference.iloc[first_index]),
-        xytext=(x_data[first_index]/10-5, difference.iloc[first_index]+0.005),
-        fontproperties={'family': 'serif', 'size': 12, 'weight': 'regular'}
-    )
+# # Find the index where the difference crosses the threshold value
+# diff_sign = np.sign(difference.values + 0.00025)
+# change_indices = np.where(diff_sign[:-1] != diff_sign[1:])[0]
+# if len(change_indices) > 0:
+#     first_index = change_indices[0] + 1
+#     # ax2.plot(x_data[first_index]/10, difference.iloc[first_index], marker='o', markersize=8, color='red')
+# else:
+#     print("No sign change found.")
+# plt.axvline(x=x_data[first_index]/10, color="green", linestyle='--')
+# ax.annotate(
+#         f'Start of Deviation: {x_data[first_index]/10:.2f} mT\n (difference = 0.00025)',
+#         xy=(x_data[first_index]/10, difference.iloc[first_index]),
+#         xytext=(x_data[first_index]/10-5, difference.iloc[first_index]+0.005),
+#         fontproperties={'family': 'serif', 'size': 12, 'weight': 'regular'}
+#     )
 
 
 # Set font styles
@@ -107,6 +107,6 @@ ax.legend(lines + lines2, labels + labels2, prop=legend_font, loc='upper right')
 plt.tight_layout()
 
 # Save and display the plot
-plt.savefig(title + '.KHM.pdf', format='pdf', bbox_inches='tight')
-plt.savefig(title + '.KHM.png', format='png', bbox_inches='tight')
+# plt.savefig(title + '.KHM.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig(title + '.KHM.png', format='png', bbox_inches='tight')
 plt.show()

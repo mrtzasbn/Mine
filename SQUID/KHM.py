@@ -15,8 +15,8 @@ def create_scatter_plot(ax, x_data, y_data, color="black"):
     ax.scatter(x_data, y_data, color=color)
 
 # Parameters
-file_path_infield = r"D:\MyData\CERN\R168-5\KHM\Nb3Sn_Thin_Film_KHM_5K_infield.dc.dat"
-file_path_rem = r"D:\MyData\CERN\R168-5\KHM\Nb3Sn_Thin_Film_KHM_5K_rem.dc.dat"
+file_path_infield = r"D:\MyData\CERN\R192-5\SQUID\KHM\Nb3Sn_192_5_up_KHM_5K_infield.dc.dat"
+file_path_rem = r"D:\MyData\CERN\R192-5\SQUID\KHM\Nb3Sn_192_5_up_KHM_5K_rem.dc.dat"
 title = "Nb$_3$Sn Thin Film, Sample 168-5"
 
 df_infield = read_squid_data(file_path_infield).loc[:, ['Field (Oe)', 'Long Moment (emu)']]
@@ -54,6 +54,6 @@ ax2.grid(True)
 
 plt.tight_layout()
 # Save and display the plot
-plt.savefig(title + '.KHM.pdf', format='pdf', bbox_inches='tight')
-plt.savefig(title + '.KHM.png', format='png', bbox_inches='tight')
+# plt.savefig(title + '.KHM.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig(title + '.KHM.png', format='png', bbox_inches='tight')
 plt.show()

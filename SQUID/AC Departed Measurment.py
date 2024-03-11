@@ -33,8 +33,8 @@ def extract_chunks(df):
     return list(chunk_data.values())
 
 # List of file paths and legend labels
-file = r"D:\MyData\CERN\R192-5\SQUID\AC-5K_Field_R192-5_Low.ac.dat"
-title= "Nb$_3$Sn Thin Film, 5K, Low Field, R192-5"
+file = r"D:\MyData\CERN\R169-5\SQUID\AC-5K_Field_R169-5_High.ac.dat"
+title= "Nb$_3$Sn Thin Film, 5K, High Field, R169-5"
 
 df = read_squid_data(file).loc[:, ['Field (Oe)', "m' (emu)", 'm" (emu)', "Regression Fit"]]
 
@@ -50,7 +50,7 @@ df3 = dfs[2]
 fig, ax = plt.subplots(figsize=(10, 8))
 
 for i, df_chunk in enumerate(dfs):
-    # df_chunk = df_chunk[df_chunk["Regression Fit"] > 9.9999E-1]
+    df_chunk = df_chunk[df_chunk["Regression Fit"] > 9.9999E-1]
     ax.plot(df_chunk['Field (Oe)']/10, df_chunk[str]*1E6, label=f"ac try {i+1}", marker="o")
 
 # ax.plot(df1["Field (Oe)"]/10, df1[str]-df2[str], label="ac 1 - ac 2")
@@ -85,6 +85,6 @@ ax.grid(True)
 plt.tight_layout()
 # plt.savefig(file.split("\\")[-1] + '1.pdf', format='pdf', bbox_inches='tight')
 # plt.savefig(file.split("\\")[-1] + '1.png', format='png', bbox_inches='tight')
-# plt.savefig(title + '.pdf', format='pdf', bbox_inches='tight')
+plt.savefig(title + '.pdf', format='pdf', bbox_inches='tight')
 plt.savefig(title + '.png', format='png', bbox_inches='tight')
 plt.show()
